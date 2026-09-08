@@ -1,0 +1,38 @@
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# WordPress runtime
+wordpress/wp-config.php
+wordpress/wp-content/uploads/
+wordpress/wp-content/cache/
+wordpress/wp-content/upgrade/
+wordpress/wp-content/backups*/
+wordpress/wp-content/ai1wm-backups/
+
+# Dependencies / build
+node_modules/
+vendor/
+dist/
+build/
+coverage/
+playwright-report/
+test-results/
+
+# Logs / temp
+*.log
+*.tmp
+.tmp/
+tmp/
+
+# Credentials / keys
+*.pem
+*.key
+*.crt
