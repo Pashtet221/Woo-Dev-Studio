@@ -22,19 +22,23 @@ Greenfield rebuild. The site is intentionally being developed from scratch inste
 
 ## Repository layout
 
+This repository is the WordPress theme itself. Theme files live at the repository root, following the same model as the Reboot project. Infrastructure for Codex, Bridge, docs and QA lives alongside the theme code.
+
 ```text
 Woo-Dev-Studio/
+├── style.css
+├── functions.php
+├── index.php
+├── assets/
+├── inc/
+├── template-parts/
 ├── docs/
-├── wordpress/
-│   └── wp-content/
-│       ├── themes/
-│       │   └── woo-dev-studio/
-│       └── plugins/
-│           └── wp-bridge/
+├── config/
 ├── scripts/
 ├── tests/
-│   └── playwright/
 └── README.md
 ```
 
-See `docs/PROJECT_PROFILE.md` and `docs/CODEX_WORKFLOW.md` before making implementation changes.
+Do not create an additional `wordpress/wp-content/themes/...` wrapper inside this repository.
+
+See `AGENTS.md`, `docs/PROJECT_PROFILE.md` and `docs/CODEX_WORKFLOW.md` before making implementation changes.

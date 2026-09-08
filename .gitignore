@@ -7,15 +7,16 @@
 .env
 .env.*
 !.env.example
+config/.env
 *.local
 
-# WordPress runtime
-wordpress/wp-config.php
-wordpress/wp-content/uploads/
-wordpress/wp-content/cache/
-wordpress/wp-content/upgrade/
-wordpress/wp-content/backups*/
-wordpress/wp-content/ai1wm-backups/
+# WordPress runtime (when the theme is deployed into a full WP install)
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backups*/
+wp-content/ai1wm-backups/
 
 # Dependencies / build
 node_modules/
