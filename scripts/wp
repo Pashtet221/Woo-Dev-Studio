@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DIR="$(cd "$(dirname "$0")"/.. && pwd)"
+ENV_FILE="$DIR/config/.env"
+
+if [[ -f "$ENV_FILE" ]]; then
+  set -a
+  # shellcheck disable=SC1090
+  source "$ENV_FILE"
+  set +a
+fi
+
+missing=()
+[[ -n "${WORDPRESS_URL:-}" ]] || missing+=(WORDPRESS_URL)
+[[ -n "${WORDPRESS_USERNAME:-}" ]] || missing+=(WORDPRESS_USERNAME)
+[[ -n "${WORDPRESS_APP_PASSWORD:-}" ]] || missing+=(WORDPRESS_APP_PASSWORD)
+
+if (( ${#missing[@]} > 0 )); then
+  printf 'Missing WordPress connection variables: %s\n' "${missing[*]}" >&2
+  printf 'Codex Cloud: configure them as Environment Variables/Secrets. Local: copy config/.env.example to config/.env and fill config/.env.\n' >&2
+  exit 2
+fi
+
+exec bash "$DIR/scripts/wordpress-api.sh" "$@"
