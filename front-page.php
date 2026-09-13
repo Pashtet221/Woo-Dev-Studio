@@ -12,18 +12,12 @@ if (!defined('ABSPATH')) {
 get_header();
 ?>
 <main id="main" class="site-main">
-    <?php while (have_posts()) : ?>
-        <?php the_post(); ?>
-        <article id="post-<?php the_ID(); ?>" <?php post_class('front-page'); ?>>
-            <header class="front-page__header">
-                <h1 class="front-page__title"><?php the_title(); ?></h1>
-            </header>
-
-            <div class="front-page__content">
-                <?php the_content(); ?>
-            </div>
-        </article>
-    <?php endwhile; ?>
+    <?php get_template_part('template-parts/home/hero'); ?>
+    <?php get_template_part('template-parts/home/services'); ?>
+    <?php get_template_part('template-parts/home/about'); ?>
+    <?php get_template_part('template-parts/home/work'); ?>
+    <?php get_template_part('template-parts/home/process'); ?>
+    <?php get_template_part('template-parts/home/contact'); ?>
 </main>
 <?php
 get_footer();
