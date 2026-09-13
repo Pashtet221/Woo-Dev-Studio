@@ -32,15 +32,11 @@ if (!defined('ABSPATH')) {
         </button>
 
         <nav id="primary-navigation" class="primary-nav" aria-label="<?php esc_attr_e('Primary navigation', 'woo-dev-studio'); ?>">
-            <?php if (has_nav_menu('primary')) : ?>
-                <?php wp_nav_menu(['theme_location' => 'primary', 'container' => false, 'menu_class' => 'primary-nav__list']); ?>
-            <?php else : ?>
-                <ul class="primary-nav__list">
-                    <li><a href="<?php echo esc_url(home_url('/#services')); ?>">Services</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/#about')); ?>">About</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/#work')); ?>">Projects</a></li>
-                </ul>
-            <?php endif; ?>
+            <ul class="primary-nav__list">
+                <li><a href="<?php echo esc_url(get_post_type_archive_link('service') ?: home_url('/services/')); ?>">Services</a></li>
+                <li><a href="<?php echo esc_url(home_url('/#about')); ?>">About</a></li>
+                <li><a href="<?php echo esc_url(get_post_type_archive_link('project') ?: home_url('/projects/')); ?>">Projects</a></li>
+            </ul>
             <a class="button button--small" href="<?php echo esc_url(home_url('/contact/')); ?>">Let’s talk <span aria-hidden="true">↗</span></a>
         </nav>
     </div>
