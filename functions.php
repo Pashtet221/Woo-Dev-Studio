@@ -28,3 +28,22 @@ add_action('after_setup_theme', static function (): void {
         'footer'  => __('Footer Menu', 'woo-dev-studio'),
     ]);
 });
+
+add_action('wp_enqueue_scripts', static function (): void {
+    $theme = wp_get_theme();
+
+    wp_enqueue_style(
+        'woo-dev-studio',
+        get_stylesheet_uri(),
+        [],
+        $theme->get('Version')
+    );
+
+    wp_enqueue_script(
+        'woo-dev-studio-navigation',
+        get_theme_file_uri('assets/js/navigation.js'),
+        [],
+        $theme->get('Version'),
+        true
+    );
+});
