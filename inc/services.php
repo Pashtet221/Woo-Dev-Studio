@@ -26,6 +26,26 @@ add_action('init', static function (): void {
     ]);
 });
 
+/** Return a service field from ACF or its native post-meta fallback. */
+function wpds_service_field(string $name, $fallback = '', ?int $post_id = null)
+{
+    $post_id = $post_id ?: get_the_ID();
+
+    if (function_exists('get_field')) {
+        $value = get_field($name, $post_id ?: false);
+        if ($value !== false && $value !== null && $value !== '') {
+            return $value;
+        }
+    }
+
+    $value = get_post_meta($post_id, $name, true);
+    if ($value !== false && $value !== null && $value !== '') {
+        return $value;
+    }
+
+    return $fallback;
+}
+
 /** Fields shared by the ACF group and the no-plugin admin fallback. */
 function wpds_service_simple_fields(): array
 {
