@@ -20,6 +20,7 @@ if (!defined('ABSPATH')) {
             <a href="<?php echo esc_url(get_post_type_archive_link('service') ?: home_url('/services/')); ?>">Services</a>
             <a href="<?php echo esc_url(home_url('/about/')); ?>">About</a>
             <a href="<?php echo esc_url(get_post_type_archive_link('project') ?: home_url('/projects/')); ?>">Projects</a>
+            <a href="<?php echo esc_url(wpds_insights_url()); ?>">Insights</a>
             <a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a>
             <a href="https://www.linkedin.com/in/pavel-damut-142181288" target="_blank" rel="noopener noreferrer">LinkedIn <span class="screen-reader-text">(opens in a new tab)</span></a>
         </div>
