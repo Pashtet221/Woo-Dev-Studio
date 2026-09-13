@@ -13,9 +13,9 @@ Recommended approach:
 - ACF fields for editable content
 - Flexible Content only where genuine editorial flexibility is needed
 
-## Case Studies
+## Projects / Case Studies
 
-Planned CPT: `case_study`
+CPT: `project`
 
 Suggested fields:
 
@@ -32,7 +32,7 @@ Suggested fields:
 - related services
 - CTA
 
-Suggested archive slug: `/case-studies/`
+Archive slug: `/projects/`
 
 ## Blog
 

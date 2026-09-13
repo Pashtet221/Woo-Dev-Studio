@@ -47,3 +47,5 @@ add_action('wp_enqueue_scripts', static function (): void {
         true
     );
 });
+
+require_once get_theme_file_path('inc/projects.php');

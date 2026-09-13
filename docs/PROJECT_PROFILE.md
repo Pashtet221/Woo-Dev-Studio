@@ -86,9 +86,9 @@ Exact sitemap will be finalized in `SEO_STRUCTURE.md` before full page productio
 
 ### Custom Post Types
 
-Planned:
+Implemented:
 
-- `case_study` — portfolio / case studies
+- `project` — reusable WooCommerce and WordPress project case studies (`/projects/`)
 
 Add other CPTs only when there is a concrete content-model reason.
 

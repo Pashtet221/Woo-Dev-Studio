@@ -12,7 +12,7 @@ Status: draft. Final sitemap and keyword mapping must be validated before mass p
 - `/theme-development/` — Custom theme development
 - `/integrations/` — Integrations
 - `/maintenance/` — Maintenance / ongoing development
-- `/case-studies/` — Case studies archive
+- `/projects/` — Projects / case studies archive
 - `/about/` — About
 - `/contact/` — Contact
 - `/blog/` — Insights / blog
