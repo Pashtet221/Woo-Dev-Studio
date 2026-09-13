@@ -1,0 +1,810 @@
+{
+  "woocommerce-development": {
+    "meta": {
+      "service_eyebrow": "Custom commerce engineering",
+      "service_lead": "Build a WooCommerce store around the way your business actually sells—not around the limits of a template.",
+      "service_intro": "We design and engineer scalable storefronts, checkout journeys and operational workflows for ambitious ecommerce teams.",
+      "service_problem_heading": "Where stores get stuck",
+      "service_approach_heading": "How we solve it",
+      "service_deliverables_heading": "What we deliver",
+      "service_process_heading": "A controlled path from discovery to release",
+      "service_benefits_heading": "What the business gains",
+      "service_projects_heading": "Relevant commerce work",
+      "service_faq_heading": "Frequently asked questions",
+      "service_primary_cta_label": "Discuss your project",
+      "service_primary_cta_url": "/contact/",
+      "service_cta_label": "Start a conversation",
+      "service_cta_url": "/contact/",
+      "service_problem_copy": "Growing stores often inherit rigid themes, disconnected extensions and fragile customizations that slow releases and create friction for customers and staff.",
+      "service_approach_copy": "We translate commercial and operational requirements into a focused technical architecture, then build the customer experience and commerce logic as one maintainable system.",
+      "service_deliverables": [
+        {
+          "title": "Commerce architecture",
+          "description": "Product, pricing, tax, fulfilment and account flows mapped before development."
+        },
+        {
+          "title": "Custom storefront",
+          "description": "Responsive product discovery, product pages, cart and account experiences built for your catalogue."
+        },
+        {
+          "title": "Checkout engineering",
+          "description": "Conversion-focused checkout logic, payment flows and validation tailored to the business."
+        },
+        {
+          "title": "Operational tooling",
+          "description": "Automations and admin workflows that reduce repetitive work for the team."
+        }
+      ],
+      "service_process_steps": [
+        {
+          "title": "Discover",
+          "description": "Align on goals, users, constraints, current systems and measurable success."
+        },
+        {
+          "title": "Define",
+          "description": "Turn requirements into a practical scope, architecture and delivery plan."
+        },
+        {
+          "title": "Build",
+          "description": "Implement in focused increments with review and testing throughout."
+        },
+        {
+          "title": "Validate",
+          "description": "Check critical journeys, content, accessibility and operational behavior."
+        },
+        {
+          "title": "Release",
+          "description": "Deploy through a controlled launch process and verify production behavior."
+        },
+        {
+          "title": "Improve",
+          "description": "Use real feedback and data to prioritize the next valuable changes."
+        }
+      ],
+      "service_benefits": [
+        {
+          "title": "Built for your model",
+          "description": "The platform supports your products, customers and operations without template compromises."
+        },
+        {
+          "title": "Lower extension risk",
+          "description": "Purposeful architecture replaces overlapping plugins and brittle workarounds."
+        },
+        {
+          "title": "Room to grow",
+          "description": "Clean foundations make new markets, features and integrations easier to add."
+        }
+      ],
+      "service_related_projects": [],
+      "service_faqs": [
+        {
+          "question": "Can you build a completely custom WooCommerce store?",
+          "answer": "Yes. We build custom themes, commerce functionality and integrations around approved requirements without relying on a page builder."
+        },
+        {
+          "question": "Can you work with an existing design team?",
+          "answer": "Yes. We can implement supplied Figma designs or collaborate on technical decisions while your design partner owns the visual direction."
+        },
+        {
+          "question": "Do you handle complex products and pricing?",
+          "answer": "Yes. We regularly scope variable, bundled, configured, subscription and role-based purchasing workflows."
+        },
+        {
+          "question": "What happens after launch?",
+          "answer": "We can provide monitoring, maintenance and an ongoing development roadmap after handover."
+        }
+      ],
+      "service_cta_heading": "Ready to move your store forward?",
+      "service_cta_copy": "Tell us what needs to change. We’ll help define the right technical next step.",
+      "service_card_kicker": "Custom commerce engineering",
+      "service_card_summary": "Build a WooCommerce store around the way your business actually sells—not around the limits of a template."
+    }
+  },
+  "custom-wordpress-development": {
+    "meta": {
+      "service_eyebrow": "Bespoke WordPress platforms",
+      "service_lead": "A flexible WordPress website built for your content, your team and the next stage of the business.",
+      "service_intro": "We create custom themes, structured content systems and purpose-built functionality without page-builder debt.",
+      "service_problem_heading": "Where stores get stuck",
+      "service_approach_heading": "How we solve it",
+      "service_deliverables_heading": "What we deliver",
+      "service_process_heading": "A controlled path from discovery to release",
+      "service_benefits_heading": "What the business gains",
+      "service_projects_heading": "Relevant commerce work",
+      "service_faq_heading": "Frequently asked questions",
+      "service_primary_cta_label": "Discuss your project",
+      "service_primary_cta_url": "/contact/",
+      "service_cta_label": "Start a conversation",
+      "service_cta_url": "/contact/",
+      "service_problem_copy": "Generic themes and unrestricted builders often produce inconsistent pages, slow frontends and an editing experience that becomes harder to govern over time.",
+      "service_approach_copy": "We model the content first, turn the approved design into reusable components, and give editors deliberate controls while the theme protects layout and performance.",
+      "service_deliverables": [
+        {
+          "title": "Custom theme",
+          "description": "A semantic, responsive theme built from the approved design system."
+        },
+        {
+          "title": "Structured content",
+          "description": "Purposeful post types, taxonomies and fields shaped around real editorial needs."
+        },
+        {
+          "title": "Reusable components",
+          "description": "Consistent sections and patterns that reduce duplication across the site."
+        },
+        {
+          "title": "Custom functionality",
+          "description": "Focused features and integrations developed to fit the platform cleanly."
+        }
+      ],
+      "service_process_steps": [
+        {
+          "title": "Discover",
+          "description": "Align on goals, users, constraints, current systems and measurable success."
+        },
+        {
+          "title": "Define",
+          "description": "Turn requirements into a practical scope, architecture and delivery plan."
+        },
+        {
+          "title": "Build",
+          "description": "Implement in focused increments with review and testing throughout."
+        },
+        {
+          "title": "Validate",
+          "description": "Check critical journeys, content, accessibility and operational behavior."
+        },
+        {
+          "title": "Release",
+          "description": "Deploy through a controlled launch process and verify production behavior."
+        },
+        {
+          "title": "Improve",
+          "description": "Use real feedback and data to prioritize the next valuable changes."
+        }
+      ],
+      "service_benefits": [
+        {
+          "title": "Confident editing",
+          "description": "Teams can publish and update content without rebuilding layouts."
+        },
+        {
+          "title": "Consistent experience",
+          "description": "Controlled components preserve brand and accessibility standards."
+        },
+        {
+          "title": "Maintainable codebase",
+          "description": "A lean custom stack is easier to understand, test and extend."
+        }
+      ],
+      "service_related_projects": [],
+      "service_faqs": [
+        {
+          "question": "Do you use page builders?",
+          "answer": "No. We build a custom theme and use native WordPress and ACF controls where they improve the editing workflow."
+        },
+        {
+          "question": "Can you migrate content from our current site?",
+          "answer": "Yes. We can map, clean and migrate existing content into the new structured model."
+        },
+        {
+          "question": "Will our team be able to edit the site?",
+          "answer": "Yes. The editing model is designed around your team, with only the controls needed to manage content safely."
+        },
+        {
+          "question": "Can you integrate third-party services?",
+          "answer": "Yes. We can connect suitable CRM, forms, search, analytics and other business systems."
+        }
+      ],
+      "service_cta_heading": "Ready to move your store forward?",
+      "service_cta_copy": "Tell us what needs to change. We’ll help define the right technical next step.",
+      "service_card_kicker": "Bespoke WordPress platforms",
+      "service_card_summary": "A flexible WordPress website built for your content, your team and the next stage of the business."
+    }
+  },
+  "woocommerce-plugin-development": {
+    "meta": {
+      "service_eyebrow": "Purpose-built WooCommerce extensions",
+      "service_lead": "Turn a unique commerce rule or workflow into a reliable plugin your store can depend on.",
+      "service_intro": "We develop maintainable WooCommerce extensions for requirements that off-the-shelf plugins cannot solve cleanly.",
+      "service_problem_heading": "Where stores get stuck",
+      "service_approach_heading": "How we solve it",
+      "service_deliverables_heading": "What we deliver",
+      "service_process_heading": "A controlled path from discovery to release",
+      "service_benefits_heading": "What the business gains",
+      "service_projects_heading": "Relevant commerce work",
+      "service_faq_heading": "Frequently asked questions",
+      "service_primary_cta_label": "Discuss your project",
+      "service_primary_cta_url": "/contact/",
+      "service_cta_label": "Start a conversation",
+      "service_cta_url": "/contact/",
+      "service_problem_copy": "Stacking generic extensions to approximate a specific requirement creates conflicts, duplicated logic and an upgrade path nobody fully owns.",
+      "service_approach_copy": "We define the business rules and edge cases, choose stable WooCommerce extension points, and build a focused plugin with clear admin controls and upgrade-safe code.",
+      "service_deliverables": [
+        {
+          "title": "Requirements specification",
+          "description": "Rules, roles, data and failure cases documented before implementation."
+        },
+        {
+          "title": "Custom plugin",
+          "description": "Namespaced, standards-conscious code isolated from the theme."
+        },
+        {
+          "title": "Admin experience",
+          "description": "Practical settings, validation and operational feedback for store teams."
+        },
+        {
+          "title": "Testing and handover",
+          "description": "Critical workflows tested with concise technical and usage documentation."
+        }
+      ],
+      "service_process_steps": [
+        {
+          "title": "Discover",
+          "description": "Align on goals, users, constraints, current systems and measurable success."
+        },
+        {
+          "title": "Define",
+          "description": "Turn requirements into a practical scope, architecture and delivery plan."
+        },
+        {
+          "title": "Build",
+          "description": "Implement in focused increments with review and testing throughout."
+        },
+        {
+          "title": "Validate",
+          "description": "Check critical journeys, content, accessibility and operational behavior."
+        },
+        {
+          "title": "Release",
+          "description": "Deploy through a controlled launch process and verify production behavior."
+        },
+        {
+          "title": "Improve",
+          "description": "Use real feedback and data to prioritize the next valuable changes."
+        }
+      ],
+      "service_benefits": [
+        {
+          "title": "Exact business fit",
+          "description": "The feature implements the required workflow rather than a rough plugin combination."
+        },
+        {
+          "title": "Safer upgrades",
+          "description": "Core and theme files remain untouched, reducing maintenance risk."
+        },
+        {
+          "title": "Clear ownership",
+          "description": "One focused codebase is easier to diagnose and evolve."
+        }
+      ],
+      "service_related_projects": [],
+      "service_faqs": [
+        {
+          "question": "What kinds of WooCommerce plugins do you build?",
+          "answer": "Pricing, checkout, fulfilment, account, payment, order automation and integration features are common examples."
+        },
+        {
+          "question": "Can you replace several existing plugins?",
+          "answer": "Often, yes. We first audit their responsibilities and data so consolidation does not remove required behavior."
+        },
+        {
+          "question": "Will the plugin survive WooCommerce updates?",
+          "answer": "We use documented extension points and test compatibility, but ongoing maintenance is recommended for business-critical software."
+        },
+        {
+          "question": "Do you provide source code?",
+          "answer": "Yes. Project deliverables and ownership terms are agreed before development begins."
+        }
+      ],
+      "service_cta_heading": "Ready to move your store forward?",
+      "service_cta_copy": "Tell us what needs to change. We’ll help define the right technical next step.",
+      "service_card_kicker": "Purpose-built WooCommerce extensions",
+      "service_card_summary": "Turn a unique commerce rule or workflow into a reliable plugin your store can depend on."
+    }
+  },
+  "woocommerce-integrations": {
+    "meta": {
+      "service_eyebrow": "Connected commerce systems",
+      "service_lead": "Connect WooCommerce to the systems behind payments, fulfilment, customers and reporting.",
+      "service_intro": "We engineer observable, resilient integrations that keep data moving without turning operations into manual reconciliation.",
+      "service_problem_heading": "Where stores get stuck",
+      "service_approach_heading": "How we solve it",
+      "service_deliverables_heading": "What we deliver",
+      "service_process_heading": "A controlled path from discovery to release",
+      "service_benefits_heading": "What the business gains",
+      "service_projects_heading": "Relevant commerce work",
+      "service_faq_heading": "Frequently asked questions",
+      "service_primary_cta_label": "Discuss your project",
+      "service_primary_cta_url": "/contact/",
+      "service_cta_label": "Start a conversation",
+      "service_cta_url": "/contact/",
+      "service_problem_copy": "Unreliable syncs create duplicate records, stale stock, delayed orders and reporting gaps—while teams lack the visibility to identify what failed.",
+      "service_approach_copy": "We map the source of truth, data contracts and failure modes, then implement secure API or webhook flows with logging, retries and operational controls.",
+      "service_deliverables": [
+        {
+          "title": "Integration blueprint",
+          "description": "Systems, data ownership, triggers and transformations clearly mapped."
+        },
+        {
+          "title": "API and webhook implementation",
+          "description": "Authenticated connections with validation and idempotent processing."
+        },
+        {
+          "title": "Failure handling",
+          "description": "Useful logs, retry strategies and alerts for recoverable exceptions."
+        },
+        {
+          "title": "Operational documentation",
+          "description": "Clear guidance for credentials, monitoring and common support scenarios."
+        }
+      ],
+      "service_process_steps": [
+        {
+          "title": "Discover",
+          "description": "Align on goals, users, constraints, current systems and measurable success."
+        },
+        {
+          "title": "Define",
+          "description": "Turn requirements into a practical scope, architecture and delivery plan."
+        },
+        {
+          "title": "Build",
+          "description": "Implement in focused increments with review and testing throughout."
+        },
+        {
+          "title": "Validate",
+          "description": "Check critical journeys, content, accessibility and operational behavior."
+        },
+        {
+          "title": "Release",
+          "description": "Deploy through a controlled launch process and verify production behavior."
+        },
+        {
+          "title": "Improve",
+          "description": "Use real feedback and data to prioritize the next valuable changes."
+        }
+      ],
+      "service_benefits": [
+        {
+          "title": "Less manual work",
+          "description": "Reliable data movement removes repetitive exports and reconciliation."
+        },
+        {
+          "title": "Fewer costly errors",
+          "description": "Validation and idempotency protect orders, stock and customer records."
+        },
+        {
+          "title": "Operational visibility",
+          "description": "Teams can understand integration status and act when attention is needed."
+        }
+      ],
+      "service_related_projects": [],
+      "service_faqs": [
+        {
+          "question": "Which systems can you integrate with WooCommerce?",
+          "answer": "We work with documented APIs for payments, shipping, CRM, ERP, marketplaces, analytics and custom internal systems."
+        },
+        {
+          "question": "Can you repair an unreliable integration?",
+          "answer": "Yes. We can audit its data flow, logs and failure behavior before recommending a repair or replacement."
+        },
+        {
+          "question": "How do you protect customer data?",
+          "answer": "We minimize transferred data, use secure authentication and follow the access and retention requirements agreed for each system."
+        },
+        {
+          "question": "Do integrations run in real time?",
+          "answer": "When appropriate. Some workflows use webhooks; others are safer as queued or scheduled synchronization."
+        }
+      ],
+      "service_cta_heading": "Ready to move your store forward?",
+      "service_cta_copy": "Tell us what needs to change. We’ll help define the right technical next step.",
+      "service_card_kicker": "Connected commerce systems",
+      "service_card_summary": "Connect WooCommerce to the systems behind payments, fulfilment, customers and reporting."
+    }
+  },
+  "woocommerce-customization": {
+    "meta": {
+      "service_eyebrow": "Targeted store improvements",
+      "service_lead": "Remove friction from an established WooCommerce store without rebuilding what already works.",
+      "service_intro": "We improve customer journeys, admin workflows and technical foundations through carefully scoped, upgrade-safe changes.",
+      "service_problem_heading": "Where stores get stuck",
+      "service_approach_heading": "How we solve it",
+      "service_deliverables_heading": "What we deliver",
+      "service_process_heading": "A controlled path from discovery to release",
+      "service_benefits_heading": "What the business gains",
+      "service_projects_heading": "Relevant commerce work",
+      "service_faq_heading": "Frequently asked questions",
+      "service_primary_cta_label": "Discuss your project",
+      "service_primary_cta_url": "/contact/",
+      "service_cta_label": "Start a conversation",
+      "service_cta_url": "/contact/",
+      "service_problem_copy": "As a store evolves, quick fixes and extension overlap can make product discovery, checkout and administration inconsistent and difficult to change safely.",
+      "service_approach_copy": "We audit the affected journey and code path, protect existing behavior with a clear plan, then implement the smallest durable change that solves the underlying problem.",
+      "service_deliverables": [
+        {
+          "title": "Store and code audit",
+          "description": "The relevant experience, extensions and custom code reviewed before changes."
+        },
+        {
+          "title": "UX improvements",
+          "description": "Focused enhancements to products, filters, cart, checkout or accounts."
+        },
+        {
+          "title": "Architecture fixes",
+          "description": "Fragile overrides and duplicated behavior replaced with maintainable extension points."
+        },
+        {
+          "title": "Release support",
+          "description": "Changes tested in staging with rollout and rollback considerations."
+        }
+      ],
+      "service_process_steps": [
+        {
+          "title": "Discover",
+          "description": "Align on goals, users, constraints, current systems and measurable success."
+        },
+        {
+          "title": "Define",
+          "description": "Turn requirements into a practical scope, architecture and delivery plan."
+        },
+        {
+          "title": "Build",
+          "description": "Implement in focused increments with review and testing throughout."
+        },
+        {
+          "title": "Validate",
+          "description": "Check critical journeys, content, accessibility and operational behavior."
+        },
+        {
+          "title": "Release",
+          "description": "Deploy through a controlled launch process and verify production behavior."
+        },
+        {
+          "title": "Improve",
+          "description": "Use real feedback and data to prioritize the next valuable changes."
+        }
+      ],
+      "service_benefits": [
+        {
+          "title": "Faster customer journeys",
+          "description": "Focused fixes reduce friction where it affects discovery and conversion."
+        },
+        {
+          "title": "Safer future changes",
+          "description": "Cleaner implementation reduces regression and compatibility risk."
+        },
+        {
+          "title": "Better team workflows",
+          "description": "Practical admin improvements save time on frequent store tasks."
+        }
+      ],
+      "service_related_projects": [],
+      "service_faqs": [
+        {
+          "question": "Can you improve one part of our store?",
+          "answer": "Yes. A focused engagement can address a specific journey or operational problem without requiring a full rebuild."
+        },
+        {
+          "question": "Will you edit WooCommerce core files?",
+          "answer": "No. We use supported hooks, templates and custom plugins so updates remain manageable."
+        },
+        {
+          "question": "Can you untangle conflicting plugins?",
+          "answer": "Yes. We identify overlapping responsibilities and recommend what to remove, replace or refactor."
+        },
+        {
+          "question": "Do you work on live stores?",
+          "answer": "Changes are normally developed and tested in staging before a controlled production release."
+        }
+      ],
+      "service_cta_heading": "Ready to move your store forward?",
+      "service_cta_copy": "Tell us what needs to change. We’ll help define the right technical next step.",
+      "service_card_kicker": "Targeted store improvements",
+      "service_card_summary": "Remove friction from an established WooCommerce store without rebuilding what already works."
+    }
+  },
+  "woocommerce-migration": {
+    "meta": {
+      "service_eyebrow": "Controlled ecommerce migration",
+      "service_lead": "Move to WooCommerce without losing the data, visibility and customer continuity your store depends on.",
+      "service_intro": "We plan and execute structured migrations from Shopify, OpenCart and other platforms with validation at every stage.",
+      "service_problem_heading": "Where stores get stuck",
+      "service_approach_heading": "How we solve it",
+      "service_deliverables_heading": "What we deliver",
+      "service_process_heading": "A controlled path from discovery to release",
+      "service_benefits_heading": "What the business gains",
+      "service_projects_heading": "Relevant commerce work",
+      "service_faq_heading": "Frequently asked questions",
+      "service_primary_cta_label": "Discuss your project",
+      "service_primary_cta_url": "/contact/",
+      "service_cta_label": "Start a conversation",
+      "service_cta_url": "/contact/",
+      "service_problem_copy": "A migration touches product structures, customer accounts, orders, URLs and live operations. An incomplete mapping can create silent data loss and lasting SEO damage.",
+      "service_approach_copy": "We inventory and map the source data, rehearse imports in staging, validate record counts and journeys, then coordinate a controlled cutover with redirects and rollback planning.",
+      "service_deliverables": [
+        {
+          "title": "Migration discovery",
+          "description": "Source data, extensions, URLs and operational dependencies inventoried."
+        },
+        {
+          "title": "Data transformation",
+          "description": "Products, variations, media, customers and orders mapped to the target model."
+        },
+        {
+          "title": "SEO transition",
+          "description": "Priority URLs, redirects and metadata preserved and checked."
+        },
+        {
+          "title": "Cutover and validation",
+          "description": "Final delta import, launch checklist and post-migration reconciliation."
+        }
+      ],
+      "service_process_steps": [
+        {
+          "title": "Discover",
+          "description": "Align on goals, users, constraints, current systems and measurable success."
+        },
+        {
+          "title": "Define",
+          "description": "Turn requirements into a practical scope, architecture and delivery plan."
+        },
+        {
+          "title": "Build",
+          "description": "Implement in focused increments with review and testing throughout."
+        },
+        {
+          "title": "Validate",
+          "description": "Check critical journeys, content, accessibility and operational behavior."
+        },
+        {
+          "title": "Release",
+          "description": "Deploy through a controlled launch process and verify production behavior."
+        },
+        {
+          "title": "Improve",
+          "description": "Use real feedback and data to prioritize the next valuable changes."
+        }
+      ],
+      "service_benefits": [
+        {
+          "title": "Protected continuity",
+          "description": "Customers and teams retain the information needed after launch."
+        },
+        {
+          "title": "Reduced SEO risk",
+          "description": "Intentional URL mapping limits broken links and avoidable visibility loss."
+        },
+        {
+          "title": "Verified data",
+          "description": "Rehearsals and reconciliation expose mapping problems before cutover."
+        }
+      ],
+      "service_related_projects": [],
+      "service_faqs": [
+        {
+          "question": "Which platforms can you migrate from?",
+          "answer": "Common sources include Shopify, OpenCart and custom platforms with accessible exports or APIs."
+        },
+        {
+          "question": "Can you migrate customer passwords?",
+          "answer": "It depends on the source platform and password format; where direct transfer is impossible, we plan a secure account activation flow."
+        },
+        {
+          "question": "Will order history be preserved?",
+          "answer": "It can be, subject to source data quality and an agreed mapping to WooCommerce orders."
+        },
+        {
+          "question": "How is downtime minimized?",
+          "answer": "We rehearse the migration, plan a content freeze or delta import, and keep the final cutover sequence tightly controlled."
+        }
+      ],
+      "service_cta_heading": "Ready to move your store forward?",
+      "service_cta_copy": "Tell us what needs to change. We’ll help define the right technical next step.",
+      "service_card_kicker": "Controlled ecommerce migration",
+      "service_card_summary": "Move to WooCommerce without losing the data, visibility and customer continuity your store depends on."
+    }
+  },
+  "woocommerce-performance-optimization": {
+    "meta": {
+      "service_eyebrow": "Evidence-led performance work",
+      "service_lead": "Make a busy WooCommerce store faster where speed matters—to customers, staff and revenue.",
+      "service_intro": "We diagnose the full request and background-processing lifecycle before changing code, configuration or infrastructure.",
+      "service_problem_heading": "Where stores get stuck",
+      "service_approach_heading": "How we solve it",
+      "service_deliverables_heading": "What we deliver",
+      "service_process_heading": "A controlled path from discovery to release",
+      "service_benefits_heading": "What the business gains",
+      "service_projects_heading": "Relevant commerce work",
+      "service_faq_heading": "Frequently asked questions",
+      "service_primary_cta_label": "Discuss your project",
+      "service_primary_cta_url": "/contact/",
+      "service_cta_label": "Start a conversation",
+      "service_cta_url": "/contact/",
+      "service_problem_copy": "Slow stores rarely have one cause. Queries, extensions, uncached fragments, background jobs and third-party calls can combine into poor browsing and checkout performance.",
+      "service_approach_copy": "We establish measurements, profile representative customer and admin journeys, prioritize verified bottlenecks and validate each improvement against the baseline.",
+      "service_deliverables": [
+        {
+          "title": "Performance baseline",
+          "description": "Core Web Vitals, server timings and key commerce journeys measured."
+        },
+        {
+          "title": "Application profiling",
+          "description": "Queries, hooks, AJAX, cron and Action Scheduler workloads investigated."
+        },
+        {
+          "title": "Targeted optimization",
+          "description": "High-impact code, data, caching and asset improvements implemented."
+        },
+        {
+          "title": "Results report",
+          "description": "Before-and-after evidence, remaining constraints and monitoring guidance documented."
+        }
+      ],
+      "service_process_steps": [
+        {
+          "title": "Discover",
+          "description": "Align on goals, users, constraints, current systems and measurable success."
+        },
+        {
+          "title": "Define",
+          "description": "Turn requirements into a practical scope, architecture and delivery plan."
+        },
+        {
+          "title": "Build",
+          "description": "Implement in focused increments with review and testing throughout."
+        },
+        {
+          "title": "Validate",
+          "description": "Check critical journeys, content, accessibility and operational behavior."
+        },
+        {
+          "title": "Release",
+          "description": "Deploy through a controlled launch process and verify production behavior."
+        },
+        {
+          "title": "Improve",
+          "description": "Use real feedback and data to prioritize the next valuable changes."
+        }
+      ],
+      "service_benefits": [
+        {
+          "title": "Faster buying journeys",
+          "description": "Customers spend less time waiting on product, cart and checkout interactions."
+        },
+        {
+          "title": "More stable operations",
+          "description": "Heavy queries and background queues are less likely to disrupt peak periods."
+        },
+        {
+          "title": "Better investment decisions",
+          "description": "Measurements show which changes matter and where infrastructure limits remain."
+        }
+      ],
+      "service_related_projects": [],
+      "service_faqs": [
+        {
+          "question": "Can you guarantee a specific PageSpeed score?",
+          "answer": "No responsible audit can guarantee a score before diagnosis. We target measurable improvements in real journeys and explain external constraints."
+        },
+        {
+          "question": "Do we need a new host?",
+          "answer": "Not necessarily. We profile the application first and recommend infrastructure changes only when evidence supports them."
+        },
+        {
+          "question": "Can too many plugins slow WooCommerce down?",
+          "answer": "Yes, but plugin count alone is not diagnostic. We measure what each relevant component does before removing or replacing it."
+        },
+        {
+          "question": "Will optimization affect store functionality?",
+          "answer": "Changes are tested against critical flows in staging and released with monitoring to minimize regression risk."
+        }
+      ],
+      "service_cta_heading": "Ready to move your store forward?",
+      "service_cta_copy": "Tell us what needs to change. We’ll help define the right technical next step.",
+      "service_card_kicker": "Evidence-led performance work",
+      "service_card_summary": "Make a busy WooCommerce store faster where speed matters—to customers, staff and revenue."
+    }
+  },
+  "woocommerce-maintenance-support": {
+    "meta": {
+      "service_eyebrow": "Ongoing technical ownership",
+      "service_lead": "Keep your WooCommerce store stable, secure and moving forward with a development partner who knows the codebase.",
+      "service_intro": "We combine proactive maintenance, dependable issue response and planned improvements for established ecommerce teams.",
+      "service_problem_heading": "Where stores get stuck",
+      "service_approach_heading": "How we solve it",
+      "service_deliverables_heading": "What we deliver",
+      "service_process_heading": "A controlled path from discovery to release",
+      "service_benefits_heading": "What the business gains",
+      "service_projects_heading": "Relevant commerce work",
+      "service_faq_heading": "Frequently asked questions",
+      "service_primary_cta_label": "Discuss your project",
+      "service_primary_cta_url": "/contact/",
+      "service_cta_label": "Start a conversation",
+      "service_cta_url": "/contact/",
+      "service_problem_copy": "Updates, integrations and changing business needs create continuous technical work. Reactive fixes alone allow risk and development debt to accumulate.",
+      "service_approach_copy": "We establish the store baseline, agree priorities and response expectations, then manage updates and improvements through a visible, tested release process.",
+      "service_deliverables": [
+        {
+          "title": "Technical onboarding",
+          "description": "Codebase, hosting, integrations and current risks reviewed and documented."
+        },
+        {
+          "title": "Managed updates",
+          "description": "WordPress, WooCommerce and extension updates tested before release."
+        },
+        {
+          "title": "Monitoring and fixes",
+          "description": "Actionable issues investigated with clear communication and ownership."
+        },
+        {
+          "title": "Continuous improvement",
+          "description": "A prioritized backlog turns recurring needs into planned development."
+        }
+      ],
+      "service_process_steps": [
+        {
+          "title": "Discover",
+          "description": "Align on goals, users, constraints, current systems and measurable success."
+        },
+        {
+          "title": "Define",
+          "description": "Turn requirements into a practical scope, architecture and delivery plan."
+        },
+        {
+          "title": "Build",
+          "description": "Implement in focused increments with review and testing throughout."
+        },
+        {
+          "title": "Validate",
+          "description": "Check critical journeys, content, accessibility and operational behavior."
+        },
+        {
+          "title": "Release",
+          "description": "Deploy through a controlled launch process and verify production behavior."
+        },
+        {
+          "title": "Improve",
+          "description": "Use real feedback and data to prioritize the next valuable changes."
+        }
+      ],
+      "service_benefits": [
+        {
+          "title": "Reduced operational risk",
+          "description": "Regular review and controlled updates prevent avoidable emergencies."
+        },
+        {
+          "title": "Faster issue resolution",
+          "description": "Context retained over time shortens diagnosis and decision-making."
+        },
+        {
+          "title": "Steady progress",
+          "description": "Improvements ship through a predictable process instead of a queue of workarounds."
+        }
+      ],
+      "service_related_projects": [],
+      "service_faqs": [
+        {
+          "question": "What is included in maintenance?",
+          "answer": "The exact plan is agreed around updates, monitoring, support capacity and ongoing development needs."
+        },
+        {
+          "question": "Do you offer emergency support?",
+          "answer": "Response expectations and coverage windows are defined in the support agreement before work begins."
+        },
+        {
+          "question": "Can you take over a store built by another developer?",
+          "answer": "Yes. We start with technical onboarding and an audit so inherited risks are visible."
+        },
+        {
+          "question": "How are changes tested?",
+          "answer": "Updates and development work are normally validated in staging, then released through an agreed deployment process."
+        }
+      ],
+      "service_cta_heading": "Ready to move your store forward?",
+      "service_cta_copy": "Tell us what needs to change. We’ll help define the right technical next step.",
+      "service_card_kicker": "Ongoing technical ownership",
+      "service_card_summary": "Keep your WooCommerce store stable, secure and moving forward with a development partner who knows the codebase."
+    }
+  }
+}

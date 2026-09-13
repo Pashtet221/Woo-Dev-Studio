@@ -24,6 +24,41 @@ add_action('init', static function (): void {
         'supports'           => ['title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'page-attributes'],
         'menu_position'      => 21,
     ]);
+
+    // Expose the native-meta fallback to authenticated REST clients. This keeps
+    // service content automatable when ACF Pro is not installed on an environment.
+    foreach (wpds_service_simple_fields() as $name => [, $type]) {
+        register_post_meta('service', $name, [
+            'single' => true,
+            'type' => 'string',
+            'show_in_rest' => true,
+            'sanitize_callback' => $type === 'url' ? 'esc_url_raw' : ($type === 'textarea' ? 'sanitize_textarea_field' : 'sanitize_text_field'),
+            'auth_callback' => static fn(): bool => current_user_can('edit_posts'),
+        ]);
+    }
+
+    $pair_schema = static fn(array $columns): array => [
+        'type' => 'array',
+        'items' => [
+            'type' => 'object',
+            'properties' => array_fill_keys($columns, ['type' => 'string']),
+            'additionalProperties' => false,
+        ],
+    ];
+    foreach (wpds_service_repeater_fields() as $name => [, , $columns]) {
+        register_post_meta('service', $name, [
+            'single' => true,
+            'type' => 'array',
+            'show_in_rest' => ['schema' => $pair_schema($columns)],
+            'auth_callback' => static fn(): bool => current_user_can('edit_posts'),
+        ]);
+    }
+    register_post_meta('service', 'service_related_projects', [
+        'single' => true,
+        'type' => 'array',
+        'show_in_rest' => ['schema' => ['type' => 'array', 'items' => ['type' => 'integer']]],
+        'auth_callback' => static fn(): bool => current_user_can('edit_posts'),
+    ]);
 });
 
 /** Return the curated service architecture used by the archive. */

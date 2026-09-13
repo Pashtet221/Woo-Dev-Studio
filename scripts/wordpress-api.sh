@@ -45,6 +45,42 @@ case "${1:-help}" in
   update-acf)
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2/acf"
     ;;
+  custom-fields)
+    curl_api "${WORDPRESS_URL%/}/wp-json/wp/v2/service/$2?context=edit&_fields=id,slug,meta"
+    ;;
+  update-custom-fields)
+    curl_api -X POST -H "Content-Type: application/json" --data-binary @"$3" "${WORDPRESS_URL%/}/wp-json/wp/v2/service/$2?_fields=id,slug,meta"
+    ;;
+  sync-service-fields)
+    catalog="$(mktemp)"
+    payload="$(mktemp)"
+    trap 'rm -f "$catalog" "$payload"' EXIT
+    curl_api "$API/posts?post_type=service&per_page=100" > "$catalog"
+    python3 - "$catalog" "$2" <<'PY' | while IFS=$'\t' read -r post_id slug; do
+import json
+import sys
+
+catalog = json.load(open(sys.argv[1], encoding='utf-8'))
+fields = json.load(open(sys.argv[2], encoding='utf-8'))
+ids = {item['slug']: item['id'] for item in catalog['items']}
+missing = sorted(set(fields) - set(ids))
+if missing:
+    raise SystemExit('Services not found in WordPress: ' + ', '.join(missing))
+for slug in fields:
+    print(f"{ids[slug]}\t{slug}")
+PY
+      python3 - "$2" "$slug" "$payload" <<'PY'
+import json
+import sys
+
+fields = json.load(open(sys.argv[1], encoding='utf-8'))
+with open(sys.argv[3], 'w', encoding='utf-8') as output:
+    json.dump(fields[sys.argv[2]], output, ensure_ascii=False)
+PY
+      curl_api -X POST -H "Content-Type: application/json" --data-binary @"$payload" "${WORDPRESS_URL%/}/wp-json/wp/v2/service/$post_id?_fields=id,slug,meta"
+      printf '\n'
+    done
+    ;;
   media-upload)
     file="${2:-}"
     if [[ -z "$file" || ! -f "$file" ]]; then
@@ -76,6 +112,6 @@ case "${1:-help}" in
     curl_api "$API/audit"
     ;;
   help|*)
-    echo "health pages posts case-studies find get seo acf create update update-seo update-acf media-upload thumbnail scan-links audit"
+    echo "health pages posts case-studies find get seo acf custom-fields create update update-seo update-acf update-custom-fields sync-service-fields media-upload thumbnail scan-links audit"
     ;;
 esac
