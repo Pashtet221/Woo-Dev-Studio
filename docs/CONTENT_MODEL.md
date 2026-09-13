@@ -48,6 +48,28 @@ Primary role:
 - expertise demonstration
 - internal linking support for commercial pages
 
+## Services
+
+CPT: `service`
+
+Services use a controlled landing-page structure rather than a generic flexible
+page builder. The native title, excerpt, featured image and editor remain
+available, while the service field group supplies these purpose-specific blocks:
+
+- hero: eyebrow, lead, supporting copy and primary CTA
+- overview: client challenge and the studio's approach
+- scope: repeatable deliverables and business benefits
+- process: repeatable service-specific delivery steps
+- proof: selected related projects
+- FAQ: repeatable questions and answers
+- final CTA
+- archive-card kicker and summary
+
+Archive slug: `/services/`
+
+Individual service URLs use `/services/{service-slug}/`. Rank Math remains the
+source of editable SEO metadata rather than duplicating SEO fields in ACF.
+
 ## Reusable sections
 
 Initial section library may include:

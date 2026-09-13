@@ -49,3 +49,4 @@ add_action('wp_enqueue_scripts', static function (): void {
 });
 
 require_once get_theme_file_path('inc/projects.php');
+require_once get_theme_file_path('inc/services.php');
