@@ -15,6 +15,9 @@ case "${1:-help}" in
   pages)
     curl_api "$API/posts?post_type=page&per_page=100"
     ;;
+  services)
+    curl_api "$API/posts?post_type=service&per_page=100"
+    ;;
   posts)
     curl_api "$API/posts?post_type=post&per_page=100"
     ;;
@@ -133,6 +136,6 @@ PY
     curl_api "$API/audit"
     ;;
   help|*)
-    echo "health pages posts case-studies find get seo acf custom-fields create update update-seo update-acf update-custom-fields sync-service-fields media-upload thumbnail scan-links audit"
+    echo "health pages posts services case-studies find get seo acf custom-fields create update update-seo update-acf update-custom-fields sync-service-fields media-upload thumbnail scan-links audit"
     ;;
 esac

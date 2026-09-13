@@ -21,7 +21,11 @@ add_action('init', static function (): void {
         'menu_icon'          => 'dashicons-admin-tools',
         'has_archive'        => 'services',
         'rewrite'            => ['slug' => 'services', 'with_front' => false],
-        'supports'           => ['title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'page-attributes'],
+        // WordPress only exposes registered post meta in the REST response when
+        // the post type declares custom-fields support. The native metabox stays
+        // responsible for the editing UI; this flag lets the Bridge client read
+        // and write the same values through the authenticated REST API.
+        'supports'           => ['title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'page-attributes', 'custom-fields'],
         'menu_position'      => 21,
     ]);
 
