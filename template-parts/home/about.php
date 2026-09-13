@@ -9,10 +9,10 @@
         </div>
         <div class="about__copy">
             <p class="eyebrow"><span></span> About the studio</p>
-            <h2>Small team.<br><em>Big expertise.</em></h2>
-            <p class="about__lead">We’re a development studio focused on building thoughtful WordPress and WooCommerce solutions.</p>
-            <p>We combine strategy, design thinking and technical expertise to create websites that look sharp, work beautifully and stay easy to manage.</p>
-            <a class="text-link" href="#contact">More about us <span aria-hidden="true">↗</span></a>
+            <h2>Small studio.<br><em>Direct expertise.</em></h2>
+            <p class="about__lead">Woo Dev Studio is an independent, developer-led studio focused on thoughtful WordPress and WooCommerce solutions.</p>
+            <p>You work directly with the person planning and building your project—without layers of handoff or unnecessary complexity.</p>
+            <a class="text-link" href="<?php echo esc_url(home_url('/about/')); ?>">More about the studio <span aria-hidden="true">↗</span></a>
         </div>
     </div>
 </section>
