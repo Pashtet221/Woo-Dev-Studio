@@ -324,3 +324,104 @@ function wpds_save_service_fields(int $post_id): void
     $related ? update_post_meta($post_id, 'service_related_projects', $related) : delete_post_meta($post_id, 'service_related_projects');
 }
 add_action('save_post_service', 'wpds_save_service_fields');
+
+/** Return the service fields that the project Bridge is allowed to manage. */
+function wpds_service_custom_fields(int $post_id): array
+{
+    $fields = [];
+
+    foreach (array_keys(wpds_service_simple_fields()) as $name) {
+        $fields[$name] = (string) get_post_meta($post_id, $name, true);
+    }
+
+    foreach (array_keys(wpds_service_repeater_fields()) as $name) {
+        $value = get_post_meta($post_id, $name, true);
+        $fields[$name] = is_array($value) ? $value : [];
+    }
+
+    $related = get_post_meta($post_id, 'service_related_projects', true);
+    $fields['service_related_projects'] = is_array($related) ? array_values(array_map('absint', $related)) : [];
+
+    return $fields;
+}
+
+/**
+ * Expose the native service field model through the authenticated Bridge.
+ *
+ * ACF's endpoint cannot be used on installations where ACF Pro is inactive,
+ * and the public post-type REST controller may be disabled by the server-side
+ * service registration. Keeping this project-specific route in the Bridge
+ * namespace gives automation the same explicit field allowlist as the admin UI.
+ */
+add_action('rest_api_init', static function (): void {
+    register_rest_route('codex-bridge/v1', '/posts/(?P<id>\d+)/service-fields', [
+        [
+            'methods' => WP_REST_Server::READABLE,
+            'permission_callback' => static fn(WP_REST_Request $request): bool => current_user_can('edit_post', (int) $request['id']),
+            'callback' => static function (WP_REST_Request $request) {
+                $post_id = (int) $request['id'];
+                if (get_post_type($post_id) !== 'service') {
+                    return new WP_Error('wpds_not_service', __('The requested post is not a service.', 'woo-dev-studio'), ['status' => 404]);
+                }
+
+                return rest_ensure_response([
+                    'id' => $post_id,
+                    'slug' => get_post_field('post_name', $post_id),
+                    'fields' => wpds_service_custom_fields($post_id),
+                ]);
+            },
+        ],
+        [
+            'methods' => WP_REST_Server::EDITABLE,
+            'permission_callback' => static fn(WP_REST_Request $request): bool => current_user_can('edit_post', (int) $request['id']),
+            'callback' => static function (WP_REST_Request $request) {
+                $post_id = (int) $request['id'];
+                if (get_post_type($post_id) !== 'service') {
+                    return new WP_Error('wpds_not_service', __('The requested post is not a service.', 'woo-dev-studio'), ['status' => 404]);
+                }
+
+                $submitted = $request->get_json_params()['fields'] ?? null;
+                if (!is_array($submitted)) {
+                    return new WP_Error('wpds_invalid_service_fields', __('A fields object is required.', 'woo-dev-studio'), ['status' => 400]);
+                }
+
+                foreach (wpds_service_simple_fields() as $name => [, $type]) {
+                    if (!array_key_exists($name, $submitted)) {
+                        continue;
+                    }
+                    $value = $type === 'url' ? esc_url_raw($submitted[$name]) : ($type === 'textarea' ? sanitize_textarea_field($submitted[$name]) : sanitize_text_field($submitted[$name]));
+                    $value === '' ? delete_post_meta($post_id, $name) : update_post_meta($post_id, $name, $value);
+                }
+
+                foreach (wpds_service_repeater_fields() as $name => [, , $columns]) {
+                    if (!array_key_exists($name, $submitted) || !is_array($submitted[$name])) {
+                        continue;
+                    }
+                    $rows = [];
+                    foreach ($submitted[$name] as $row) {
+                        if (!is_array($row)) {
+                            continue;
+                        }
+                        $clean = [];
+                        foreach ($columns as $column) {
+                            $clean[$column] = sanitize_textarea_field($row[$column] ?? '');
+                        }
+                        $rows[] = $clean;
+                    }
+                    $rows ? update_post_meta($post_id, $name, $rows) : delete_post_meta($post_id, $name);
+                }
+
+                if (array_key_exists('service_related_projects', $submitted) && is_array($submitted['service_related_projects'])) {
+                    $related = array_values(array_filter(array_map('absint', $submitted['service_related_projects'])));
+                    $related ? update_post_meta($post_id, 'service_related_projects', $related) : delete_post_meta($post_id, 'service_related_projects');
+                }
+
+                return rest_ensure_response([
+                    'id' => $post_id,
+                    'slug' => get_post_field('post_name', $post_id),
+                    'fields' => wpds_service_custom_fields($post_id),
+                ]);
+            },
+        ],
+    ]);
+});

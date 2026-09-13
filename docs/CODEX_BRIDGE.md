@@ -50,3 +50,19 @@ Before updating WordPress data:
 4. Read the object again and verify the result.
 
 Do not use Bridge writes as a substitute for theme development. Theme PHP/CSS/JS belongs in Git; WordPress content and editable fields belong in WordPress.
+
+## Service fields without ACF Pro
+
+The theme exposes its allowlisted native service fields inside the authenticated
+Bridge namespace, so service content does not depend on the public WordPress REST
+controller or an active ACF Pro installation:
+
+```bash
+bash scripts/wp custom-fields 48
+bash scripts/wp update-custom-fields 48 payload.json
+bash scripts/wp sync-service-fields content/service-fields.json
+```
+
+Update payloads use a top-level `fields` object. The sync command reads every
+service before writing, updates all eight services by slug, and verifies every
+returned value against the source file.
