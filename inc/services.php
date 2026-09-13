@@ -26,6 +26,39 @@ add_action('init', static function (): void {
     ]);
 });
 
+/** Return the curated service architecture used by the archive. */
+function wpds_service_catalog(): array
+{
+    return [
+        [
+            'label' => __('Build', 'woo-dev-studio'),
+            'description' => __('Commerce platforms and custom WordPress products engineered from the ground up.', 'woo-dev-studio'),
+            'services' => [
+                ['number' => '01', 'title' => __('WooCommerce Development', 'woo-dev-studio'), 'slug' => 'woocommerce-development', 'featured' => true, 'summary' => __('Custom WooCommerce stores—from storefront and product architecture to checkout, accounts, integrations and complex commerce logic.', 'woo-dev-studio'), 'capabilities' => [__('Custom storefronts', 'woo-dev-studio'), __('Checkout systems', 'woo-dev-studio'), __('Commerce logic', 'woo-dev-studio')]],
+                ['number' => '02', 'title' => __('Custom WordPress Development', 'woo-dev-studio'), 'slug' => 'custom-wordpress-development', 'summary' => __('Bespoke WordPress websites with custom themes, ACF blocks, content types, editorial tools and functionality—never a page-builder dependency.', 'woo-dev-studio'), 'capabilities' => [__('Custom themes', 'woo-dev-studio'), __('ACF & content systems', 'woo-dev-studio'), __('Custom functionality', 'woo-dev-studio')]],
+                ['number' => '03', 'title' => __('WooCommerce Plugin Development', 'woo-dev-studio'), 'slug' => 'woocommerce-plugin-development', 'summary' => __('Purpose-built plugins for pricing, discounts, delivery, payments, checkout workflows, order automation and requirements off-the-shelf tools cannot solve.', 'woo-dev-studio'), 'capabilities' => [__('Pricing & discounts', 'woo-dev-studio'), __('Order automation', 'woo-dev-studio'), __('Payment workflows', 'woo-dev-studio')]],
+            ],
+        ],
+        [
+            'label' => __('Extend', 'woo-dev-studio'),
+            'description' => __('Connect, migrate and evolve an existing commerce ecosystem.', 'woo-dev-studio'),
+            'services' => [
+                ['number' => '04', 'title' => __('WooCommerce Integrations', 'woo-dev-studio'), 'slug' => 'woocommerce-integrations', 'summary' => __('Reliable connections between WooCommerce and payment, shipping, CRM, ERP, marketplace, analytics and other external systems.', 'woo-dev-studio'), 'capabilities' => [__('REST APIs & webhooks', 'woo-dev-studio'), __('CRM & ERP', 'woo-dev-studio'), __('Payments & shipping', 'woo-dev-studio')]],
+                ['number' => '05', 'title' => __('WooCommerce Customization & Improvements', 'woo-dev-studio'), 'slug' => 'woocommerce-customization', 'summary' => __('Targeted improvements to existing stores, including product and account experiences, filters, variations, checkout, AJAX features and pricing rules.', 'woo-dev-studio'), 'capabilities' => [__('Checkout & accounts', 'woo-dev-studio'), __('Products & filters', 'woo-dev-studio'), __('Architecture fixes', 'woo-dev-studio')]],
+                ['number' => '06', 'title' => __('WooCommerce Migration', 'woo-dev-studio'), 'slug' => 'woocommerce-migration', 'summary' => __('Structured migrations from Shopify, OpenCart and other platforms, preserving products, variations, media, customers, orders and organic visibility.', 'woo-dev-studio'), 'capabilities' => [__('Catalog & orders', 'woo-dev-studio'), __('Customers & media', 'woo-dev-studio'), __('SEO URLs & redirects', 'woo-dev-studio')]],
+            ],
+        ],
+        [
+            'label' => __('Improve', 'woo-dev-studio'),
+            'description' => __('Keep established stores fast, stable and ready for their next stage of growth.', 'woo-dev-studio'),
+            'services' => [
+                ['number' => '07', 'title' => __('WooCommerce Performance Optimization', 'woo-dev-studio'), 'slug' => 'woocommerce-performance-optimization', 'summary' => __('Deep performance work across Core Web Vitals, database queries, AJAX, cron, Action Scheduler, caching, frontend assets and checkout.', 'woo-dev-studio'), 'capabilities' => [__('Core Web Vitals', 'woo-dev-studio'), __('Database & background jobs', 'woo-dev-studio'), __('Checkout performance', 'woo-dev-studio')]],
+                ['number' => '08', 'title' => __('WooCommerce Maintenance & Support', 'woo-dev-studio'), 'slug' => 'woocommerce-maintenance-support', 'summary' => __('Ongoing technical ownership for updates, bugs, compatibility, monitoring, performance maintenance and iterative store development.', 'woo-dev-studio'), 'capabilities' => [__('Updates & compatibility', 'woo-dev-studio'), __('Monitoring & fixes', 'woo-dev-studio'), __('Continuous improvements', 'woo-dev-studio')]],
+            ],
+        ],
+    ];
+}
+
 /** Return a service field from ACF or its native post-meta fallback. */
 function wpds_service_field(string $name, $fallback = '', ?int $post_id = null)
 {

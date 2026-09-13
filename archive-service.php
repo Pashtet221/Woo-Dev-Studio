@@ -4,55 +4,58 @@ if (!defined('ABSPATH')) { exit; }
 
 get_header();
 
-$fallback_services = [
-    ['01', 'WooCommerce Development', 'Custom stores, checkout experiences and commerce systems built around the way your business works.', 'woocommerce-development', ['Store architecture', 'Custom checkout', 'Performance optimisation']],
-    ['02', 'Custom WordPress', 'Fast, flexible websites with a tailored editing experience and a maintainable custom theme.', 'custom-wordpress', ['Custom themes', 'Content systems', 'Technical SEO foundations']],
-    ['03', 'Plugin Development', 'Focused plugins and integrations that connect platforms, automate workflows and solve complex requirements.', 'plugin-development', ['Custom functionality', 'API integrations', 'Business automation']],
-    ['04', 'Support & Growth', 'Ongoing technical partnership for improvements, stability, performance and confident growth.', 'support-growth', ['Maintenance', 'Conversion improvements', 'Technical consulting']],
-];
+$service_groups = wpds_service_catalog();
+$published_services = [];
+
+while (have_posts()) {
+    the_post();
+    $published_services[get_post_field('post_name')] = get_the_ID();
+}
 ?>
 <main id="main" class="site-main services-archive">
     <section class="catalog-hero">
         <div class="container catalog-hero__inner">
-            <p class="eyebrow"><span></span> <?php esc_html_e('What we do', 'woo-dev-studio'); ?></p>
-            <h1><?php esc_html_e('Development built for', 'woo-dev-studio'); ?><br><em><?php esc_html_e('real growth.', 'woo-dev-studio'); ?></em></h1>
-            <p class="catalog-hero__intro"><?php esc_html_e('Specialist WordPress and WooCommerce services—from the first technical decision to launch and ongoing improvement.', 'woo-dev-studio'); ?></p>
+            <p class="eyebrow"><span></span> <?php esc_html_e('WooCommerce engineering studio', 'woo-dev-studio'); ?></p>
+            <h1><?php esc_html_e('Specialist development for', 'woo-dev-studio'); ?><br><em><?php esc_html_e('ambitious stores.', 'woo-dev-studio'); ?></em></h1>
+            <p class="catalog-hero__intro"><?php esc_html_e('We build, extend and improve custom WooCommerce systems—with the focused engineering expertise complex commerce projects demand.', 'woo-dev-studio'); ?></p>
         </div>
     </section>
 
     <section class="section service-catalog" aria-labelledby="services-heading">
         <div class="container">
             <div class="service-catalog__heading">
-                <p class="eyebrow"><span></span> <?php esc_html_e('Capabilities', 'woo-dev-studio'); ?></p>
-                <h2 id="services-heading"><?php esc_html_e('Choose the expertise', 'woo-dev-studio'); ?><br><em><?php esc_html_e('your project needs.', 'woo-dev-studio'); ?></em></h2>
+                <p class="eyebrow"><span></span> <?php esc_html_e('What we do', 'woo-dev-studio'); ?></p>
+                <h2 id="services-heading"><?php esc_html_e('Eight focused services.', 'woo-dev-studio'); ?><br><em><?php esc_html_e('One technical partner.', 'woo-dev-studio'); ?></em></h2>
             </div>
 
-            <div class="service-catalog__list">
-                <?php if (have_posts()) : ?>
-                    <?php $number = 0; while (have_posts()) : the_post(); $number++; ?>
-                        <article id="<?php echo esc_attr(get_post_field('post_name')); ?>" class="service-catalog__item">
-                            <span class="service-catalog__number"><?php echo esc_html(sprintf('%02d', $number)); ?></span>
-                            <div>
-                                <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                                <p><?php echo esc_html(wpds_service_field('service_card_summary', get_the_excerpt())); ?></p>
-                            </div>
-                            <a class="service-catalog__arrow" href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr(sprintf(__('View %s', 'woo-dev-studio'), get_the_title())); ?>"><span aria-hidden="true">↗</span></a>
-                        </article>
-                    <?php endwhile; ?>
-                <?php else : ?>
-                    <?php foreach ($fallback_services as [$number, $title, $summary, $slug, $items]) : ?>
-                        <article id="<?php echo esc_attr($slug); ?>" class="service-catalog__item">
-                            <span class="service-catalog__number"><?php echo esc_html($number); ?></span>
-                            <div>
-                                <h3><?php echo esc_html($title); ?></h3>
-                                <p><?php echo esc_html($summary); ?></p>
-                                <ul><?php foreach ($items as $item) : ?><li><?php echo esc_html($item); ?></li><?php endforeach; ?></ul>
-                            </div>
-                            <a class="service-catalog__arrow" href="<?php echo esc_url(home_url('/contact/?service=' . rawurlencode($slug))); ?>" aria-label="<?php echo esc_attr(sprintf(__('Discuss %s', 'woo-dev-studio'), $title)); ?>"><span aria-hidden="true">↗</span></a>
-                        </article>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
+            <?php foreach ($service_groups as $group) : ?>
+                <section class="service-catalog__group" aria-labelledby="service-group-<?php echo esc_attr(strtolower($group['label'])); ?>">
+                    <header class="service-catalog__group-heading">
+                        <p id="service-group-<?php echo esc_attr(strtolower($group['label'])); ?>"><?php echo esc_html($group['label']); ?></p>
+                        <span><?php echo esc_html($group['description']); ?></span>
+                    </header>
+                    <div class="service-catalog__list">
+                        <?php foreach ($group['services'] as $service) :
+                            $post_id = $published_services[$service['slug']] ?? 0;
+                            $title = $post_id ? get_the_title($post_id) : $service['title'];
+                            $summary = $post_id ? wpds_service_field('service_card_summary', get_the_excerpt($post_id), $post_id) : $service['summary'];
+                            $url = $post_id ? get_permalink($post_id) : home_url('/services/' . $service['slug'] . '/');
+                            $classes = 'service-catalog__item' . (!empty($service['featured']) ? ' service-catalog__item--featured' : '');
+                        ?>
+                            <article id="<?php echo esc_attr($service['slug']); ?>" class="<?php echo esc_attr($classes); ?>">
+                                <span class="service-catalog__number"><?php echo esc_html($service['number']); ?></span>
+                                <div>
+                                    <?php if (!empty($service['featured'])) : ?><p class="service-catalog__flag"><?php esc_html_e('Flagship service', 'woo-dev-studio'); ?></p><?php endif; ?>
+                                    <h3><a href="<?php echo esc_url($url); ?>"><?php echo esc_html($title); ?></a></h3>
+                                    <p><?php echo esc_html($summary); ?></p>
+                                    <ul><?php foreach ($service['capabilities'] as $capability) : ?><li><?php echo esc_html($capability); ?></li><?php endforeach; ?></ul>
+                                </div>
+                                <a class="service-catalog__arrow" href="<?php echo esc_url($url); ?>" aria-label="<?php echo esc_attr(sprintf(__('View %s', 'woo-dev-studio'), $title)); ?>"><span aria-hidden="true">↗</span></a>
+                            </article>
+                        <?php endforeach; ?>
+                    </div>
+                </section>
+            <?php endforeach; ?>
         </div>
     </section>
 
