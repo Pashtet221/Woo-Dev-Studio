@@ -6,11 +6,12 @@ if ($legacy) {
     $url = home_url('/projects/');
     $card_image = null;
 } else {
-    $accent = wpds_project_field('project_accent', 'violet');
+    $defaults = wpds_project_field_defaults();
+    $accent = wpds_project_field('project_accent', $defaults['project_accent']);
     $visual_class = 'project--' . $accent;
-    $category = wpds_project_field('project_card_category', 'Project');
+    $category = wpds_project_field('project_card_category', $defaults['project_card_category']);
     $title = get_the_title();
-    $service = wpds_project_field('project_card_service', wpds_project_field('project_industry', 'WordPress development'));
+    $service = wpds_project_field('project_card_service', wpds_project_field('project_industry', $defaults['project_card_service']));
     $url = get_permalink();
     $card_image = wpds_project_field('project_card_image');
     if (!$card_image && has_post_thumbnail()) { $card_image = get_post_thumbnail_id(); }
