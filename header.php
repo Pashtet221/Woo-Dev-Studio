@@ -41,7 +41,7 @@ if (!defined('ABSPATH')) {
                     <li><a href="<?php echo esc_url(home_url('/#work')); ?>">Projects</a></li>
                 </ul>
             <?php endif; ?>
-            <a class="button button--small" href="<?php echo esc_url(home_url('/#contact')); ?>">Let’s talk <span aria-hidden="true">↗</span></a>
+            <a class="button button--small" href="<?php echo esc_url(home_url('/contact/')); ?>">Let’s talk <span aria-hidden="true">↗</span></a>
         </nav>
     </div>
 </header>
