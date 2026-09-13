@@ -22,6 +22,28 @@ add_action('init', static function (): void {
     ]);
 });
 
+/**
+ * Refresh rewrite rules once per theme version after the project routes exist.
+ *
+ * The theme can be deployed by replacing its files without triggering
+ * `after_switch_theme`. In that situation WordPress keeps the old rewrite rules
+ * and valid project permalinks return a 404 until an administrator saves the
+ * Permalink Settings screen. The version marker makes that refresh automatic
+ * without performing the expensive operation on every request.
+ */
+function wpds_maybe_flush_project_rewrite_rules(): void
+{
+    $version = (string) wp_get_theme()->get('Version');
+
+    if (get_option('wpds_rewrite_rules_version') === $version) {
+        return;
+    }
+
+    flush_rewrite_rules(false);
+    update_option('wpds_rewrite_rules_version', $version, false);
+}
+add_action('init', 'wpds_maybe_flush_project_rewrite_rules', 99);
+
 /** Return an ACF value, with a safe fallback when ACF is unavailable or empty. */
 function wpds_project_field(string $name, $fallback = '', ?int $post_id = null)
 {
