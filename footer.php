@@ -17,10 +17,10 @@ if (!defined('ABSPATH')) {
         </a>
         <p>Custom WordPress &amp; WooCommerce<br>development studio.</p>
         <div class="site-footer__links">
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#work">Projects</a>
-            <a href="#contact">Contact</a>
+            <a href="<?php echo esc_url(home_url('/#services')); ?>">Services</a>
+            <a href="<?php echo esc_url(home_url('/#about')); ?>">About</a>
+            <a href="<?php echo esc_url(home_url('/#work')); ?>">Projects</a>
+            <a href="<?php echo esc_url(home_url('/#contact')); ?>">Contact</a>
         </div>
         <a class="site-footer__email" href="mailto:hello@woodevstudio.com">hello@woodevstudio.com <span aria-hidden="true">↗</span></a>
     </div>

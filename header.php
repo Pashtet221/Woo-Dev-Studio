@@ -36,12 +36,12 @@ if (!defined('ABSPATH')) {
                 <?php wp_nav_menu(['theme_location' => 'primary', 'container' => false, 'menu_class' => 'primary-nav__list']); ?>
             <?php else : ?>
                 <ul class="primary-nav__list">
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#work">Projects</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/#services')); ?>">Services</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/#about')); ?>">About</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/#work')); ?>">Projects</a></li>
                 </ul>
             <?php endif; ?>
-            <a class="button button--small" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+            <a class="button button--small" href="<?php echo esc_url(home_url('/#contact')); ?>">Let’s talk <span aria-hidden="true">↗</span></a>
         </nav>
     </div>
 </header>
