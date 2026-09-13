@@ -6,12 +6,14 @@ Status: draft. Final sitemap and keyword mapping must be validated before mass p
 
 - `/` — Home
 - `/services/` — Services overview
-- `/woocommerce-development/` — WooCommerce development
-- `/wordpress-development/` — WordPress development
-- `/plugin-development/` — Custom plugin development
-- `/theme-development/` — Custom theme development
-- `/integrations/` — Integrations
-- `/maintenance/` — Maintenance / ongoing development
+- `/services/woocommerce-development/` — WooCommerce development (flagship)
+- `/services/custom-wordpress-development/` — Custom WordPress development
+- `/services/woocommerce-plugin-development/` — WooCommerce plugin development
+- `/services/woocommerce-integrations/` — WooCommerce integrations
+- `/services/woocommerce-migration/` — WooCommerce migration
+- `/services/woocommerce-performance-optimization/` — WooCommerce performance optimization
+- `/services/woocommerce-customization/` — WooCommerce customization and improvements
+- `/services/woocommerce-maintenance-support/` — WooCommerce maintenance and support
 - `/projects/` — Projects / case studies archive
 - `/about/` — About
 - `/contact/` — Contact
