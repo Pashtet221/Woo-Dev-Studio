@@ -84,7 +84,10 @@ add_action('acf/init', static function (): void {
             $text('field_project_card_service', 'Service', 'project_card_service'),
             $image('field_project_card_image', 'Card image', 'project_card_image'),
         ],
-        'location' => [[['param' => 'post_type', 'operator' => '==', 'value' => 'project']]],
+        'location' => [
+            [['param' => 'post_type', 'operator' => '==', 'value' => 'project']],
+            [['param' => 'post_type', 'operator' => '==', 'value' => 'wpds-case']],
+        ],
         'position' => 'acf_after_title',
     ]);
 });

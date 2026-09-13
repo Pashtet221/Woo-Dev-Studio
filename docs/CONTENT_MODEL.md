@@ -17,6 +17,10 @@ Recommended approach:
 
 CPT: `project`
 
+The connected WordPress installation also exposes the legacy `wpds-case` post
+type. The theme maps its single entries to the same project composition so
+existing projects remain compatible while content is migrated to `project`.
+
 Suggested fields:
 
 - project title
