@@ -27,7 +27,7 @@ if (!defined('ABSPATH')) {
     </div>
     <div class="container site-footer__bottom">
         <span>© <?php echo esc_html(wp_date('Y')); ?> WooDevStudio</span>
-        <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
+        <a href="<?php echo esc_url(get_privacy_policy_url() ?: home_url('/privacy-policy/')); ?>">Privacy Policy</a>
     </div>
 </footer>
 <?php wp_footer(); ?>
