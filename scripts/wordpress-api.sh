@@ -54,7 +54,8 @@ case "${1:-help}" in
   sync-service-fields)
     catalog="$(mktemp)"
     payload="$(mktemp)"
-    trap 'rm -f "$catalog" "$payload"' EXIT
+    response="$(mktemp)"
+    trap 'rm -f "$catalog" "$payload" "$response"' EXIT
     curl_api "$API/posts?post_type=service&per_page=100" > "$catalog"
     python3 - "$catalog" "$2" <<'PY' | while IFS=$'\t' read -r post_id slug; do
 import json
@@ -77,8 +78,28 @@ fields = json.load(open(sys.argv[1], encoding='utf-8'))
 with open(sys.argv[3], 'w', encoding='utf-8') as output:
     json.dump(fields[sys.argv[2]], output, ensure_ascii=False)
 PY
-      curl_api -X POST -H "Content-Type: application/json" --data-binary @"$payload" "${WORDPRESS_URL%/}/wp-json/wp/v2/service/$post_id?_fields=id,slug,meta"
-      printf '\n'
+      curl_api -X POST -H "Content-Type: application/json" --data-binary @"$payload" "${WORDPRESS_URL%/}/wp-json/wp/v2/service/$post_id?context=edit&_fields=id,slug,meta" > "$response"
+      python3 - "$payload" "$response" "$slug" <<'PY'
+import json
+import sys
+
+expected = json.load(open(sys.argv[1], encoding='utf-8')).get('meta', {})
+actual_response = json.load(open(sys.argv[2], encoding='utf-8'))
+actual = actual_response.get('meta')
+slug = sys.argv[3]
+
+if actual is None:
+    raise SystemExit(
+        f'{slug}: WordPress did not expose service meta through REST; '
+        'deploy the theme version that registers service fields before syncing'
+    )
+
+mismatches = [name for name, value in expected.items() if actual.get(name) != value]
+if mismatches:
+    raise SystemExit(f'{slug}: custom-field verification failed: {", ".join(mismatches)}')
+
+print(json.dumps({'id': actual_response['id'], 'slug': slug, 'fields_updated': len(expected)}))
+PY
     done
     ;;
   media-upload)
