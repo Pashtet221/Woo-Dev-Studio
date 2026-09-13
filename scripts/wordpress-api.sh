@@ -49,10 +49,10 @@ case "${1:-help}" in
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2/acf"
     ;;
   custom-fields)
-    curl_api "${WORDPRESS_URL%/}/wp-json/wp/v2/service/$2?context=edit&_fields=id,slug,meta"
+    curl_api "$API/posts/$2/service-fields"
     ;;
   update-custom-fields)
-    curl_api -X POST -H "Content-Type: application/json" --data-binary @"$3" "${WORDPRESS_URL%/}/wp-json/wp/v2/service/$2?_fields=id,slug,meta"
+    curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2/service-fields"
     ;;
   sync-service-fields)
     catalog="$(mktemp)"
@@ -79,22 +79,22 @@ import sys
 
 fields = json.load(open(sys.argv[1], encoding='utf-8'))
 with open(sys.argv[3], 'w', encoding='utf-8') as output:
-    json.dump(fields[sys.argv[2]], output, ensure_ascii=False)
+    json.dump({'fields': fields[sys.argv[2]]['meta']}, output, ensure_ascii=False)
 PY
-      curl_api -X POST -H "Content-Type: application/json" --data-binary @"$payload" "${WORDPRESS_URL%/}/wp-json/wp/v2/service/$post_id?context=edit&_fields=id,slug,meta" > "$response"
+      curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$payload" "$API/posts/$post_id/service-fields" > "$response"
       python3 - "$payload" "$response" "$slug" <<'PY'
 import json
 import sys
 
-expected = json.load(open(sys.argv[1], encoding='utf-8')).get('meta', {})
+expected = json.load(open(sys.argv[1], encoding='utf-8')).get('fields', {})
 actual_response = json.load(open(sys.argv[2], encoding='utf-8'))
-actual = actual_response.get('meta')
+actual = actual_response.get('fields')
 slug = sys.argv[3]
 
 if actual is None:
     raise SystemExit(
-        f'{slug}: WordPress did not expose service meta through REST; '
-        'deploy the theme version that registers service fields before syncing'
+        f'{slug}: WordPress Bridge did not return service fields; '
+        'deploy the theme version that registers the service-fields route before syncing'
     )
 
 mismatches = [name for name, value in expected.items() if actual.get(name) != value]
