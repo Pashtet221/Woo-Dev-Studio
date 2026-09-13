@@ -46,6 +46,14 @@ add_action('wp_enqueue_scripts', static function (): void {
         $theme->get('Version'),
         true
     );
+
+    wp_enqueue_script(
+        'woo-dev-studio-cookie-banner',
+        get_theme_file_uri('assets/js/cookie-banner.js'),
+        [],
+        $theme->get('Version'),
+        true
+    );
 });
 
 require_once get_theme_file_path('inc/projects.php');

@@ -30,6 +30,7 @@ if (!defined('ABSPATH')) {
         <a href="<?php echo esc_url(get_privacy_policy_url() ?: home_url('/privacy-policy/')); ?>">Privacy Policy</a>
     </div>
 </footer>
+<?php get_template_part('template-parts/components/cookie-banner'); ?>
 <?php wp_footer(); ?>
 </body>
 </html>
