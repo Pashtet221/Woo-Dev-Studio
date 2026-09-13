@@ -1,10 +1,11 @@
 <?php
 /** Services section. @package Woo_Dev_Studio */
+$services_url = get_post_type_archive_link('service') ?: home_url('/services/');
 $services = [
-    ['01', 'WooCommerce Development', 'High-performing online stores built around your business, customers and plans for growth.'],
-    ['02', 'Custom WordPress', 'Flexible, maintainable WordPress websites with clean code and an effortless editing experience.'],
-    ['03', 'Plugin Development', 'Purpose-built plugins and integrations that connect systems and solve complex requirements.'],
-    ['04', 'Support & Growth', 'Dependable technical partnership, ongoing improvements and proactive performance care.'],
+    ['01', 'WooCommerce Development', 'High-performing online stores built around your business, customers and plans for growth.', $services_url . '#woocommerce-development'],
+    ['02', 'Custom WordPress', 'Flexible, maintainable WordPress websites with clean code and an effortless editing experience.', $services_url . '#custom-wordpress'],
+    ['03', 'Plugin Development', 'Purpose-built plugins and integrations that connect systems and solve complex requirements.', $services_url . '#plugin-development'],
+    ['04', 'Support & Growth', 'Dependable technical partnership, ongoing improvements and proactive performance care.', $services_url . '#support-growth'],
 ];
 ?>
 <section id="services" class="section services">
