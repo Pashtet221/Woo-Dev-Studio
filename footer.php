@@ -20,7 +20,8 @@ if (!defined('ABSPATH')) {
             <a href="<?php echo esc_url(home_url('/#services')); ?>">Services</a>
             <a href="<?php echo esc_url(home_url('/#about')); ?>">About</a>
             <a href="<?php echo esc_url(home_url('/#work')); ?>">Projects</a>
-            <a href="<?php echo esc_url(home_url('/#contact')); ?>">Contact</a>
+            <a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a>
+            <a href="https://www.linkedin.com/in/pavel-damut-142181288" target="_blank" rel="noopener noreferrer">LinkedIn <span class="screen-reader-text">(opens in a new tab)</span></a>
         </div>
         <a class="site-footer__email" href="mailto:hello@woodevstudio.com">hello@woodevstudio.com <span aria-hidden="true">↗</span></a>
     </div>
