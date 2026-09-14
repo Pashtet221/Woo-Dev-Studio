@@ -21,9 +21,10 @@ add_action('init', static function (): void {
         'supports'     => ['title', 'editor', 'excerpt', 'thumbnail', 'revisions'],
     ]);
 
-    // The production Bridge still allowlists this legacy key. Register it only
-    // when no plugin owns it, so existing automation can create migration-ready
-    // cases without introducing a second public archive or permalink structure.
+    // The production Bridge still allowlists this legacy key. Keep it available
+    // for migrations, but do not expose a second Projects admin menu or rewrite
+    // rules: sharing /projects/{slug}/ with the canonical project type makes
+    // WordPress resolve canonical project permalinks as legacy posts and 404.
     if (!post_type_exists('wpds-case')) {
         register_post_type('wpds-case', [
             'labels' => [
@@ -32,11 +33,12 @@ add_action('init', static function (): void {
                 'add_new_item'  => __('Add new project', 'woo-dev-studio'),
                 'edit_item'     => __('Edit project', 'woo-dev-studio'),
             ],
-            'public'              => true,
+            'public'              => false,
+            'show_ui'             => false,
             'show_in_rest'        => true,
-            'show_in_menu'        => 'edit.php?post_type=project',
+            'publicly_queryable'  => false,
             'has_archive'         => false,
-            'rewrite'             => ['slug' => 'projects', 'with_front' => false],
+            'rewrite'             => false,
             'supports'            => ['title', 'editor', 'excerpt', 'thumbnail', 'revisions'],
         ]);
     }
@@ -53,7 +55,7 @@ add_action('init', static function (): void {
  */
 function wpds_maybe_flush_project_rewrite_rules(): void
 {
-    $version = (string) wp_get_theme()->get('Version');
+    $version = (string) wp_get_theme()->get('Version') . ':project-routes-v2';
 
     if (get_option('wpds_rewrite_rules_version') === $version) {
         return;
