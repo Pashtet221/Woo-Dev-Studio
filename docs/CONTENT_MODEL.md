@@ -18,8 +18,9 @@ Recommended approach:
 CPT: `project`
 
 The connected WordPress installation also exposes the legacy `wpds-case` post
-type. The theme maps its single entries to the same project composition so
-existing projects remain compatible while content is migrated to `project`.
+type for Bridge-assisted migrations. It has no public rewrite rules or separate
+admin menu; canonical case studies must be created as `project` records so their
+single URLs resolve under `/projects/{slug}/` without a rewrite collision.
 
 Suggested fields:
 
@@ -27,6 +28,7 @@ Suggested fields:
 - short summary
 - client / industry
 - hero image
+- live project URL
 - challenge
 - solution
 - implementation details
