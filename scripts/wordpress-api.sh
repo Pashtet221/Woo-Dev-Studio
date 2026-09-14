@@ -54,6 +54,12 @@ case "${1:-help}" in
   update-custom-fields)
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2/service-fields"
     ;;
+  project-fields)
+    curl_api "$API/posts/$2/project-fields"
+    ;;
+  update-project-fields)
+    curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2/project-fields"
+    ;;
   sync-service-fields)
     catalog="$(mktemp)"
     payload="$(mktemp)"
@@ -136,6 +142,6 @@ PY
     curl_api "$API/audit"
     ;;
   help|*)
-    echo "health pages posts services case-studies find get seo acf custom-fields create update update-seo update-acf update-custom-fields sync-service-fields media-upload thumbnail scan-links audit"
+    echo "health pages posts services case-studies find get seo acf custom-fields create update update-seo update-acf update-custom-fields project-fields update-project-fields sync-service-fields media-upload thumbnail scan-links audit"
     ;;
 esac

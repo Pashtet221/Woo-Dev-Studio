@@ -20,6 +20,26 @@ add_action('init', static function (): void {
         'rewrite'      => ['slug' => 'projects', 'with_front' => false],
         'supports'     => ['title', 'editor', 'excerpt', 'thumbnail', 'revisions'],
     ]);
+
+    // The production Bridge still allowlists this legacy key. Register it only
+    // when no plugin owns it, so existing automation can create migration-ready
+    // cases without introducing a second public archive or permalink structure.
+    if (!post_type_exists('wpds-case')) {
+        register_post_type('wpds-case', [
+            'labels' => [
+                'name'          => __('Projects', 'woo-dev-studio'),
+                'singular_name' => __('Project', 'woo-dev-studio'),
+                'add_new_item'  => __('Add new project', 'woo-dev-studio'),
+                'edit_item'     => __('Edit project', 'woo-dev-studio'),
+            ],
+            'public'              => true,
+            'show_in_rest'        => true,
+            'show_in_menu'        => 'edit.php?post_type=project',
+            'has_archive'         => false,
+            'rewrite'             => ['slug' => 'projects', 'with_front' => false],
+            'supports'            => ['title', 'editor', 'excerpt', 'thumbnail', 'revisions'],
+        ]);
+    }
 });
 
 /**
@@ -329,4 +349,104 @@ function wpds_save_project_details(int $post_id): void
     $deliverables ? update_post_meta($post_id, 'project_deliverables', $deliverables) : delete_post_meta($post_id, 'project_deliverables');
 }
 add_action('save_post_project', 'wpds_save_project_details');
+add_action('save_post_wpds-case', 'wpds_save_project_details');
 add_action('save_post_page', 'wpds_save_project_details');
+
+/** Return every project field that the authenticated Bridge may manage. */
+function wpds_project_custom_fields(int $post_id): array
+{
+    $fields = [];
+
+    foreach (array_keys(wpds_project_simple_fields()) as $name) {
+        $value = get_post_meta($post_id, $name, true);
+        $fields[$name] = in_array($name, ['project_showcase_image', 'project_gallery_one', 'project_gallery_two', 'project_card_image'], true)
+            ? absint($value)
+            : (string) $value;
+    }
+
+    foreach (['project_results', 'project_deliverables'] as $name) {
+        $value = get_post_meta($post_id, $name, true);
+        $fields[$name] = is_array($value) ? array_values($value) : [];
+    }
+
+    return $fields;
+}
+
+/** Expose the project field allowlist when ACF Pro is unavailable. */
+add_action('rest_api_init', static function (): void {
+    register_rest_route('codex-bridge/v1', '/posts/(?P<id>\d+)/project-fields', [
+        [
+            'methods' => WP_REST_Server::READABLE,
+            'permission_callback' => static fn(WP_REST_Request $request): bool => current_user_can('edit_post', (int) $request['id']),
+            'callback' => static function (WP_REST_Request $request) {
+                $post_id = (int) $request['id'];
+                if (!in_array(get_post_type($post_id), ['project', 'wpds-case'], true)) {
+                    return new WP_Error('wpds_not_project', __('The requested post is not a project.', 'woo-dev-studio'), ['status' => 404]);
+                }
+
+                return rest_ensure_response([
+                    'id' => $post_id,
+                    'slug' => get_post_field('post_name', $post_id),
+                    'fields' => wpds_project_custom_fields($post_id),
+                ]);
+            },
+        ],
+        [
+            'methods' => WP_REST_Server::EDITABLE,
+            'permission_callback' => static fn(WP_REST_Request $request): bool => current_user_can('edit_post', (int) $request['id']),
+            'callback' => static function (WP_REST_Request $request) {
+                $post_id = (int) $request['id'];
+                if (!in_array(get_post_type($post_id), ['project', 'wpds-case'], true)) {
+                    return new WP_Error('wpds_not_project', __('The requested post is not a project.', 'woo-dev-studio'), ['status' => 404]);
+                }
+
+                $submitted = $request->get_json_params()['fields'] ?? null;
+                if (!is_array($submitted)) {
+                    return new WP_Error('wpds_invalid_project_fields', __('A fields object is required.', 'woo-dev-studio'), ['status' => 400]);
+                }
+
+                foreach (wpds_project_simple_fields() as $name => [, $type]) {
+                    if (!array_key_exists($name, $submitted)) {
+                        continue;
+                    }
+                    if ($type === 'number') {
+                        $value = absint($submitted[$name]);
+                    } elseif ($type === 'textarea') {
+                        $value = sanitize_textarea_field($submitted[$name]);
+                    } else {
+                        $value = sanitize_text_field($submitted[$name]);
+                    }
+                    $value === '' || $value === 0 ? delete_post_meta($post_id, $name) : update_post_meta($post_id, $name, $value);
+                }
+
+                $repeaters = [
+                    'project_results' => ['value', 'suffix', 'label'],
+                    'project_deliverables' => ['item'],
+                ];
+                foreach ($repeaters as $name => $columns) {
+                    if (!array_key_exists($name, $submitted) || !is_array($submitted[$name])) {
+                        continue;
+                    }
+                    $rows = [];
+                    foreach ($submitted[$name] as $row) {
+                        if (!is_array($row)) {
+                            continue;
+                        }
+                        $clean = [];
+                        foreach ($columns as $column) {
+                            $clean[$column] = sanitize_text_field($row[$column] ?? '');
+                        }
+                        $rows[] = $clean;
+                    }
+                    $rows ? update_post_meta($post_id, $name, $rows) : delete_post_meta($post_id, $name);
+                }
+
+                return rest_ensure_response([
+                    'id' => $post_id,
+                    'slug' => get_post_field('post_name', $post_id),
+                    'fields' => wpds_project_custom_fields($post_id),
+                ]);
+            },
+        ],
+    ]);
+});

@@ -66,3 +66,16 @@ bash scripts/wp sync-service-fields content/service-fields.json
 Update payloads use a top-level `fields` object. The sync command reads every
 service before writing, updates all eight services by slug, and verifies every
 returned value against the source file.
+
+## Project fields without ACF Pro
+
+Project and legacy `wpds-case` records expose the same allowlisted native fields
+through the authenticated Bridge namespace:
+
+```bash
+bash scripts/wp project-fields 123
+bash scripts/wp update-project-fields 123 payload.json
+```
+
+Updates use a top-level `fields` object. Image fields accept WordPress attachment
+IDs; results and deliverables accept arrays matching the project content model.
