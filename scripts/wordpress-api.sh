@@ -2,6 +2,7 @@
 set -euo pipefail
 
 API="${WORDPRESS_URL%/}/wp-json/codex-bridge/v1"
+WP_REST="${WORDPRESS_URL%/}/wp-json/wp/v2"
 AUTH="${WORDPRESS_USERNAME}:${WORDPRESS_APP_PASSWORD}"
 
 curl_api() {
@@ -21,8 +22,11 @@ case "${1:-help}" in
   posts)
     curl_api "$API/posts?post_type=post&per_page=100"
     ;;
-  case-studies)
-    curl_api "$API/posts?post_type=case_study&per_page=100"
+  case-studies|projects)
+    # The primary project CPT is intentionally outside the Bridge plugin's
+    # generic post allowlist. It is still exposed by WordPress core REST, while
+    # project field reads and writes remain on the authenticated Bridge route.
+    curl_api "$WP_REST/project?context=edit&per_page=100"
     ;;
   find)
     curl_api --get --data-urlencode "search=${2:-}" "$API/posts"
@@ -142,6 +146,6 @@ PY
     curl_api "$API/audit"
     ;;
   help|*)
-    echo "health pages posts services case-studies find get seo acf custom-fields create update update-seo update-acf update-custom-fields project-fields update-project-fields sync-service-fields media-upload thumbnail scan-links audit"
+    echo "health pages posts services projects case-studies find get seo acf custom-fields create update update-seo update-acf update-custom-fields project-fields update-project-fields sync-service-fields media-upload thumbnail scan-links audit"
     ;;
 esac
