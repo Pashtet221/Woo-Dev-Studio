@@ -28,6 +28,7 @@ Suggested fields:
 - short summary
 - client / industry
 - hero image
+- live project URL
 - challenge
 - solution
 - implementation details

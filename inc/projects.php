@@ -102,6 +102,7 @@ function wpds_project_field_defaults(?int $post_id = null): array
         'project_year' => $post_id ? get_the_date('Y', $post_id) : wp_date('Y'),
         'project_accent' => 'violet',
         'project_site_label' => strtolower(sanitize_title($title ?: 'vellure')) . '.com',
+        'project_site_url' => '',
         'project_showcase_kicker' => 'NEW FORMULA / DAILY RITUAL',
         'project_showcase_heading' => "Quiet care\nfor radiant skin.",
         'project_showcase_link' => 'Shop the collection',
@@ -150,6 +151,7 @@ function wpds_project_simple_fields(): array
         'project_accent'           => ['Accent colour', 'select'],
         'project_showcase_image'   => ['Showcase image attachment ID', 'number'],
         'project_site_label'       => ['Website label', 'text'],
+        'project_site_url'         => ['Live website URL', 'url'],
         'project_showcase_kicker'  => ['Showcase kicker', 'text'],
         'project_showcase_heading' => ['Showcase heading', 'textarea'],
         'project_showcase_link'    => ['Showcase link label', 'text'],
@@ -197,6 +199,7 @@ add_action('acf/init', static function (): void {
             ['key' => 'field_project_showcase_tab', 'label' => __('Showcase', 'woo-dev-studio'), 'type' => 'tab'],
             $image('field_project_showcase_image', 'Showcase image', 'project_showcase_image'),
             $text('field_project_site_label', 'Website label', 'project_site_label'),
+            $text('field_project_site_url', 'Live website URL', 'project_site_url', 'url'),
             $text('field_project_showcase_kicker', 'Showcase kicker', 'project_showcase_kicker'),
             $text('field_project_showcase_heading', 'Showcase heading', 'project_showcase_heading', 'textarea'),
             $text('field_project_showcase_link', 'Showcase link label', 'project_showcase_link'),
@@ -328,6 +331,8 @@ function wpds_save_project_details(int $post_id): void
             $value = sanitize_textarea_field($value);
         } elseif ($type === 'number') {
             $value = absint($value);
+        } elseif ($type === 'url') {
+            $value = esc_url_raw($value);
         } elseif ($type === 'select') {
             $value = in_array($value, ['violet', 'lime'], true) ? $value : 'violet';
         } else {
@@ -413,6 +418,8 @@ add_action('rest_api_init', static function (): void {
                     }
                     if ($type === 'number') {
                         $value = absint($submitted[$name]);
+                    } elseif ($type === 'url') {
+                        $value = esc_url_raw($submitted[$name]);
                     } elseif ($type === 'textarea') {
                         $value = sanitize_textarea_field($submitted[$name]);
                     } else {
