@@ -17,7 +17,7 @@ Status: draft. Final sitemap and keyword mapping must be validated before mass p
 - `/projects/` — Projects / case studies archive
 - `/about/` — About
 - `/contact/` — Contact
-- `/blog/` — Insights / blog
+- `/insights/` — Insights / blog
 
 ## Content intent model
 
