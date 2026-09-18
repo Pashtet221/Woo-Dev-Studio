@@ -14,10 +14,25 @@ $site_url = wpds_project_field('project_site_url');
 $showcase_image = wpds_project_field('project_showcase_image');
 $results = wpds_project_field('project_results', $defaults['project_results']);
 $deliverables = wpds_project_field('project_deliverables', $defaults['project_deliverables']);
+$media_blocks = wpds_project_field('project_media_blocks', []);
 $gallery_one = wpds_project_field('project_gallery_one');
 $gallery_two = wpds_project_field('project_gallery_two');
 $image_url = static function ($image): string { return is_array($image) ? (string) ($image['url'] ?? '') : (string) wp_get_attachment_image_url((int) $image, 'full'); };
 $image_alt = static function ($image, string $fallback): string { return is_array($image) && !empty($image['alt']) ? (string) $image['alt'] : $fallback; };
+$image_id = static function ($image): int { return is_array($image) ? absint($image['ID'] ?? $image['id'] ?? 0) : absint($image); };
+$render_image = static function ($image, string $class, string $fallback_alt) use ($image_id, $image_url, $image_alt): void {
+    $attachment_id = $image_id($image);
+    if ($attachment_id) {
+        $alt = (string) get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
+        echo wp_get_attachment_image($attachment_id, 'full', false, ['class' => $class, 'loading' => 'lazy', 'alt' => $alt ?: $fallback_alt]);
+        return;
+    }
+
+    $url = $image_url($image);
+    if ($url !== '') {
+        echo '<img class="' . esc_attr($class) . '" src="' . esc_url($url) . '" alt="' . esc_attr($image_alt($image, $fallback_alt)) . '" loading="lazy">';
+    }
+};
 $split_heading = static function (string $heading): void {
     $parts = preg_split('/\r\n|\r|\n/', $heading, 2);
     echo esc_html($parts[0]);
@@ -30,7 +45,26 @@ $split_heading = static function (string $heading): void {
 <section class="section case-intro"><div class="container case-intro__grid"><p class="eyebrow"><span></span> <?php esc_html_e('The brief', 'woo-dev-studio'); ?></p><div><h2><?php $split_heading(wpds_project_field('project_brief_heading', $defaults['project_brief_heading'])); ?></h2><p><?php echo esc_html(wpds_project_field('project_brief_copy', $defaults['project_brief_copy'])); ?></p></div></div></section>
 <?php if ($results) : ?><section class="case-results"><div class="container"><p class="eyebrow"><span></span> <?php esc_html_e('The outcome', 'woo-dev-studio'); ?></p><div class="case-results__grid"><?php foreach ($results as $result) : ?><article><strong><?php echo esc_html($result['value'] ?? ''); ?><em><?php echo esc_html($result['suffix'] ?? ''); ?></em></strong><p><?php echo esc_html($result['label'] ?? ''); ?></p></article><?php endforeach; ?></div></div></section><?php endif; ?>
 <section class="section case-story"><div class="container case-story__grid"><div><span class="case-story__number">01</span><h2><?php esc_html_e('The challenge', 'woo-dev-studio'); ?></h2></div><div><p class="case-story__lead"><?php echo esc_html(wpds_project_field('project_challenge_lead', $defaults['project_challenge_lead'])); ?></p><p><?php echo esc_html(wpds_project_field('project_challenge_copy', $defaults['project_challenge_copy'])); ?></p></div><div><span class="case-story__number">02</span><h2><?php esc_html_e('The solution', 'woo-dev-studio'); ?></h2></div><div><p class="case-story__lead"><?php echo esc_html(wpds_project_field('project_solution_lead', $defaults['project_solution_lead'])); ?></p><p><?php echo esc_html(wpds_project_field('project_solution_copy', $defaults['project_solution_copy'])); ?></p></div></div></section>
+<?php if ($media_blocks) : ?>
+<section class="case-gallery case-gallery--blocks" aria-label="<?php esc_attr_e('Project highlights', 'woo-dev-studio'); ?>"><div class="container case-gallery__blocks">
+<?php foreach ($media_blocks as $block) :
+    $desktop_image = $block['desktop_image'] ?? null;
+    $mobile_image = $block['mobile_image'] ?? null;
+    $block_content = (string) ($block['content'] ?? '');
+    if (!$desktop_image && !$mobile_image && trim($block_content) === '') { continue; }
+?>
+<article class="case-gallery__block">
+<?php if ($desktop_image || $mobile_image) : ?><div class="case-gallery__media">
+<?php if ($desktop_image) : ?><div class="case-gallery__shot case-gallery__shot--desktop"><?php $render_image($desktop_image, 'case-gallery__image', sprintf(__('%s desktop page', 'woo-dev-studio'), $client)); ?></div><?php endif; ?>
+<?php if ($mobile_image) : ?><div class="case-gallery__shot case-gallery__shot--mobile"><?php $render_image($mobile_image, 'case-gallery__image', sprintf(__('%s mobile page', 'woo-dev-studio'), $client)); ?></div><?php endif; ?>
+</div><?php endif; ?>
+<?php if (trim($block_content) !== '') : ?><div class="case-gallery__content"><?php echo wp_kses_post(wpautop($block_content)); ?></div><?php endif; ?>
+</article>
+<?php endforeach; ?>
+</div></section>
+<?php else : ?>
 <section class="case-gallery" aria-label="<?php esc_attr_e('Project highlights', 'woo-dev-studio'); ?>"><div class="container case-gallery__grid"><div class="case-gallery__tile case-gallery__tile--violet"><?php if ($gallery_one) : ?><img src="<?php echo esc_url($image_url($gallery_one)); ?>" alt="<?php echo esc_attr($image_alt($gallery_one, __('Project highlight', 'woo-dev-studio'))); ?>"><?php else : ?><div class="case-mobile"><small><?php echo esc_html($client); ?></small><span class="case-mobile__bottle"><?php echo esc_html(substr($client, 0, 1)); ?></span><strong>Find your<br>daily ritual.</strong></div><?php endif; ?></div><div class="case-gallery__tile case-gallery__tile--lime"><?php if ($gallery_two) : ?><img src="<?php echo esc_url($image_url($gallery_two)); ?>" alt="<?php echo esc_attr($image_alt($gallery_two, __('Project highlight', 'woo-dev-studio'))); ?>"><?php else : ?><p>Built around<br><em>the product.</em></p><div class="case-pack" aria-hidden="true"><?php echo esc_html(substr($client, 0, 1)); ?></div><?php endif; ?></div></div></section>
+<?php endif; ?>
 <section class="section case-tech"><div class="container case-tech__grid"><div><p class="eyebrow"><span></span> <?php esc_html_e('What we delivered', 'woo-dev-studio'); ?></p><h2><?php $split_heading(wpds_project_field('project_delivery_heading', $defaults['project_delivery_heading'])); ?></h2></div><ul><?php foreach ($deliverables as $deliverable) : ?><li><?php echo esc_html($deliverable['item'] ?? ''); ?></li><?php endforeach; ?></ul></div></section>
 <?php get_template_part('template-parts/home/contact'); ?>
 </main>
