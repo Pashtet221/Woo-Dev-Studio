@@ -54,6 +54,16 @@ add_action('wp_enqueue_scripts', static function (): void {
         $theme->get('Version'),
         true
     );
+
+    if (is_singular(['project', 'wpds-case']) || is_page_template('page-case-study.php')) {
+        wp_enqueue_script(
+            'woo-dev-studio-image-viewer',
+            get_theme_file_uri('assets/js/image-viewer.js'),
+            [],
+            $theme->get('Version'),
+            true
+        );
+    }
 });
 
 require_once get_theme_file_path('inc/projects.php');
