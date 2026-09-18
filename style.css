@@ -3,7 +3,7 @@ Theme Name: Woo Dev Studio
 Theme URI: https://woodevstudio.com/
 Author: Woo Dev Studio
 Description: Custom theme for the Woo Dev Studio website.
-Version: 0.11.0
+Version: 0.11.1
 Text Domain: woo-dev-studio
 */
 
@@ -63,7 +63,8 @@ h1 em,h2 em{font-family:var(--serif);font-weight:400}.hero h1 em{color:var(--lim
 
 /* Dynamic project content */
 .project-card__link{display:block;color:inherit;text-decoration:none}
-.project-card__visual>img,.case-browser__image,.case-gallery__tile>img{display:block;width:100%;height:100%;object-fit:cover}
+.project-card__visual>img{display:block;width:100%;height:100%;object-fit:contain}
+.case-browser__image,.case-gallery__tile>img{display:block;width:100%;height:100%;object-fit:cover}
 .project-card__visual:has(>img){padding:0}
 .case-browser__image{min-height:590px}
 .case-study--lime .case-showcase{background:var(--lime)}
