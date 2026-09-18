@@ -34,7 +34,7 @@ Suggested fields:
 - implementation details
 - technologies
 - measurable outcomes
-- gallery
+- repeatable responsive showcase blocks (desktop image, mobile image and rich text)
 - related services
 - CTA
 

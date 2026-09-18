@@ -212,6 +212,29 @@ add_action('acf/init', static function (): void {
             $text('field_project_solution_lead', 'Solution lead', 'project_solution_lead', 'textarea'),
             $text('field_project_solution_copy', 'Solution copy', 'project_solution_copy', 'textarea'),
             ['key' => 'field_project_gallery_tab', 'label' => __('Gallery & delivery', 'woo-dev-studio'), 'type' => 'tab'],
+            [
+                'key' => 'field_project_media_blocks',
+                'label' => __('Responsive showcase blocks', 'woo-dev-studio'),
+                'name' => 'project_media_blocks',
+                'type' => 'repeater',
+                'layout' => 'block',
+                'button_label' => __('Add showcase block', 'woo-dev-studio'),
+                'instructions' => __('Add a desktop screenshot, a separate mobile screenshot, and optional formatted text below them.', 'woo-dev-studio'),
+                'sub_fields' => [
+                    $image('field_project_media_block_desktop', 'Desktop image', 'desktop_image'),
+                    $image('field_project_media_block_mobile', 'Mobile image', 'mobile_image'),
+                    [
+                        'key' => 'field_project_media_block_content',
+                        'label' => __('Text', 'woo-dev-studio'),
+                        'name' => 'content',
+                        'type' => 'wysiwyg',
+                        'tabs' => 'all',
+                        'toolbar' => 'full',
+                        'media_upload' => 0,
+                    ],
+                ],
+            ],
+            ['key' => 'field_project_legacy_gallery_message', 'label' => __('Legacy gallery', 'woo-dev-studio'), 'type' => 'message', 'message' => __('The two fields below are kept for existing projects. When responsive showcase blocks are added, they replace this legacy pair on the front end.', 'woo-dev-studio')],
             $image('field_project_gallery_one', 'Gallery image one', 'project_gallery_one'),
             $image('field_project_gallery_two', 'Gallery image two', 'project_gallery_two'),
             $text('field_project_delivery_heading', 'Delivery heading', 'project_delivery_heading', 'textarea'),
@@ -371,7 +394,7 @@ function wpds_project_custom_fields(int $post_id): array
             : (string) $value;
     }
 
-    foreach (['project_results', 'project_deliverables'] as $name) {
+    foreach (['project_results', 'project_deliverables', 'project_media_blocks'] as $name) {
         $value = get_post_meta($post_id, $name, true);
         $fields[$name] = is_array($value) ? array_values($value) : [];
     }
@@ -448,6 +471,29 @@ add_action('rest_api_init', static function (): void {
                         $rows[] = $clean;
                     }
                     $rows ? update_post_meta($post_id, $name, $rows) : delete_post_meta($post_id, $name);
+                }
+
+                if (array_key_exists('project_media_blocks', $submitted) && is_array($submitted['project_media_blocks'])) {
+                    $rows = [];
+                    foreach ($submitted['project_media_blocks'] as $row) {
+                        if (!is_array($row)) {
+                            continue;
+                        }
+
+                        $desktop_image = absint($row['desktop_image'] ?? 0);
+                        $mobile_image = absint($row['mobile_image'] ?? 0);
+                        $content = wp_kses_post($row['content'] ?? '');
+                        if (!$desktop_image && !$mobile_image && trim($content) === '') {
+                            continue;
+                        }
+
+                        $rows[] = [
+                            'desktop_image' => $desktop_image,
+                            'mobile_image' => $mobile_image,
+                            'content' => $content,
+                        ];
+                    }
+                    $rows ? update_post_meta($post_id, 'project_media_blocks', $rows) : delete_post_meta($post_id, 'project_media_blocks');
                 }
 
                 return rest_ensure_response([
