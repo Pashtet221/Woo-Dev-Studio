@@ -132,5 +132,16 @@ h1 em,h2 em{font-family:var(--serif);font-weight:400}.hero h1 em{color:var(--lim
 .image-viewer__close{position:fixed;z-index:1;top:18px;right:24px;width:44px;height:44px;padding:0;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:#161616;color:#fff;font-size:30px;line-height:1;cursor:pointer}
 .image-viewer__close:hover,.image-viewer__close:focus-visible{background:#fff;color:#161616}
 .image-viewer__close:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+
+/* Progressive entrance motion */
+@media(prefers-reduced-motion:no-preference){
+html.motion-ready .motion-reveal{opacity:0;transform:translate3d(0,22px,0);transition:opacity .65s cubic-bezier(.22,1,.36,1) var(--motion-delay,0ms),transform .65s cubic-bezier(.22,1,.36,1) var(--motion-delay,0ms);will-change:opacity,transform}
+html.motion-ready .motion-reveal.is-revealed{opacity:1;transform:translate3d(0,0,0);will-change:auto}
+.hero:before,.case-hero:after,.catalog-hero:after,.contact-hero:after,.about-hero:after,.legal-hero:after,.article-hero:after{animation:ambient-orbit 14s ease-in-out infinite alternate}
+.contact__orbit{animation:ambient-float 7s ease-in-out infinite alternate}
+}
+@keyframes ambient-orbit{to{transform:translate3d(-12px,10px,0) scale(1.025)}}
+@keyframes ambient-float{to{transform:translate3d(0,-12px,0) rotate(16deg)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button,.service-card,.contact-channel,.service-catalog__item,.case-image-link__hint{transition-duration:.01ms!important}}
 @media(max-width:900px){.case-gallery__media{grid-template-columns:minmax(0,1.65fr) minmax(180px,.75fr);gap:20px}}
 @media(max-width:640px){.case-browser__image{min-height:0}.case-gallery__grid,.case-gallery__media{grid-template-columns:1fr;gap:28px}.case-gallery__shot--mobile{width:min(320px,86%);margin-inline:auto;padding:8px}.case-gallery__content{margin-top:20px}.case-image-link__hint{right:8px;bottom:8px;opacity:1;transform:none}.image-viewer{padding:62px 12px 18px}.image-viewer__close{top:10px;right:12px}}

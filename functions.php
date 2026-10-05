@@ -48,6 +48,14 @@ add_action('wp_enqueue_scripts', static function (): void {
     );
 
     wp_enqueue_script(
+        'woo-dev-studio-motion',
+        get_theme_file_uri('assets/js/motion.js'),
+        [],
+        $theme->get('Version'),
+        true
+    );
+
+    wp_enqueue_script(
         'woo-dev-studio-cookie-banner',
         get_theme_file_uri('assets/js/cookie-banner.js'),
         [],
