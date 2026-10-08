@@ -79,3 +79,4 @@ require_once get_theme_file_path('inc/services.php');
 require_once get_theme_file_path('inc/contact.php');
 require_once get_theme_file_path('inc/analytics.php');
 require_once get_theme_file_path('inc/blog.php');
+require_once get_theme_file_path('inc/plugin-library.php');
